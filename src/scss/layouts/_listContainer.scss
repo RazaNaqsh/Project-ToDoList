@@ -15,7 +15,20 @@
 			transform: translateX(0);
 		}
 	}
-	&__list {
+	&__lists {
+		padding: 1rem 2rem;
+	}
+	&__listItem {
+		background-color: $VeryDarkBlue;
+		display: flex;
+		align-items: baseline;
+
+		padding: 1rem;
+		margin-top: 0.5rem;
+		gap: 2rem;
+		p {
+			align-self: center;
+		}
 	}
 	&__addTask {
 		position: relative;

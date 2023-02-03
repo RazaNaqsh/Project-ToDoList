@@ -119,6 +119,20 @@ body {
     transform: translateX(0);
   }
 }
+.listContainer__lists {
+  padding: 1rem 2rem;
+}
+.listContainer__listItem {
+  background-color: hsl(235deg, 21%, 11%);
+  display: flex;
+  align-items: baseline;
+  padding: 1rem;
+  margin-top: 0.5rem;
+  gap: 2rem;
+}
+.listContainer__listItem p {
+  align-self: center;
+}
 .listContainer__addTask {
   position: relative;
 }

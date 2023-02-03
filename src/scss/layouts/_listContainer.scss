@@ -3,4 +3,27 @@
 .listContainer {
 	grid-column: 2/3;
 	grid-row: 2/3;
+
+	display: grid;
+	grid-template-rows: 6fr 1fr;
+
+	&__list {
+	}
+	&__addTask {
+		position: relative;
+		&__addBtn {
+			background: $LightGrayishBlue;
+			position: absolute;
+			top: 1rem;
+			right: 1.5rem;
+			height: 50px;
+			width: 50px;
+			border-radius: 50%;
+			cursor: pointer;
+			transition: all 150ms ease-in-out;
+			&:hover {
+				background-color: $LightGrayishBlueHover;
+			}
+		}
+	}
 }

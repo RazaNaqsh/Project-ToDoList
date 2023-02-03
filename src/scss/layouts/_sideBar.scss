@@ -19,7 +19,7 @@
 	}
 	&__lower {
 	}
-	&__tabs {
+	&__tab {
 		padding: 0.9rem 0;
 		// border-radius: 5px;
 		cursor: pointer;
@@ -28,7 +28,12 @@
 			background: $VeryDarkBlue;
 			color: $LightGrayishBlueHover;
 		}
+		&--active {
+			background: $VeryDarkBlue;
+			color: $LightGrayishBlueHover;
+		}
 	}
+
 	&__project {
 		border-bottom: 1px solid $LightGrayishBlue;
 	}

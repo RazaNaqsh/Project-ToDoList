@@ -1,3 +1,4 @@
+@use "../utilities" as *;
 *,
 *::after,
 *::before {
@@ -6,5 +7,5 @@
 	box-sizing: border-box;
 }
 body {
-	background-color: #1e293b;
+	background-color: $VeryDarkBlue;
 }

@@ -4,4 +4,13 @@
 	background: $CheckBackground;
 	grid-column: 2/3;
 	grid-row: 1/2;
+	animation: slide-down 350ms ease-in-out 1 normal;
+	@keyframes slide-down {
+		0% {
+			transform: translateY(-1000px);
+		}
+		100% {
+			transform: translateX(0);
+		}
+	}
 }

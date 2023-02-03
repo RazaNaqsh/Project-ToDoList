@@ -3,10 +3,18 @@
 .listContainer {
 	grid-column: 2/3;
 	grid-row: 2/3;
-
+	background-color: $VeryDarkDesaturatedBlue;
 	display: grid;
 	grid-template-rows: 6fr 1fr;
-
+	animation: slide-up 350ms ease-in-out 1 normal;
+	@keyframes slide-up {
+		0% {
+			transform: translateY(1000px);
+		}
+		100% {
+			transform: translateX(0);
+		}
+	}
 	&__list {
 	}
 	&__addTask {
@@ -22,6 +30,7 @@
 			cursor: pointer;
 			transition: all 150ms ease-in-out;
 			&:hover {
+				transform: scale(0.95);
 				background-color: $LightGrayishBlueHover;
 			}
 		}

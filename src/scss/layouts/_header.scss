@@ -1,6 +1,7 @@
 @use "../utilities" as *;
 
 .header {
+	background: $CheckBackground;
 	grid-column: 2/3;
 	grid-row: 1/2;
 }

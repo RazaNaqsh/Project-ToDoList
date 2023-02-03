@@ -36,12 +36,16 @@ body {
 .sideBar__upper {
   border-bottom: 1px solid hsl(236deg, 33%, 92%);
 }
-.sideBar__tabs {
+.sideBar__tab {
   padding: 0.9rem 0;
   cursor: pointer;
   transition: all 150ms ease-in-out;
 }
-.sideBar__tabs:hover {
+.sideBar__tab:hover {
+  background: hsl(235deg, 21%, 11%);
+  color: hsl(234deg, 39%, 85%);
+}
+.sideBar__tab--active {
   background: hsl(235deg, 21%, 11%);
   color: hsl(234deg, 39%, 85%);
 }
@@ -56,6 +60,25 @@ body {
 .listContainer {
   grid-column: 2/3;
   grid-row: 2/3;
+  display: grid;
+  grid-template-rows: 6fr 1fr;
+}
+.listContainer__addTask {
+  position: relative;
+}
+.listContainer__addTask__addBtn {
+  background: hsl(236deg, 33%, 92%);
+  position: absolute;
+  top: 1rem;
+  right: 1.5rem;
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 150ms ease-in-out;
+}
+.listContainer__addTask__addBtn:hover {
+  background-color: hsl(234deg, 39%, 85%);
 }
 
 .container {

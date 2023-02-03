@@ -1,7 +1,13 @@
+@import url("https://fonts.googleapis.com/css2?family=Great+Vibes&family=Josefin+Sans:wght@400;600;700&family=Marck+Script&display=swap");
+
+// font styles
+$baseFontStyle: "Josefin Sans", sans-serif;
+
+// darkmode colors
 $VeryDarkBlue: hsl(235, 21%, 11%);
 $VeryDarkDesaturatedBlue: hsl(235, 24%, 19%);
 $LightGrayishBlue: hsl(234, 39%, 85%);
-// $LightGrayishBlue(hover): hsl(236, 33%, 92%);
+$LightGrayishBlueHover: hsl(236, 33%, 92%);
 $DarkGrayishBlue: hsl(234, 11%, 52%);
 $VeryDarkGrayishBlue: hsl(233, 14%, 35%);
 $VeryDarkGrayishBlue: hsl(237, 14%, 26%);

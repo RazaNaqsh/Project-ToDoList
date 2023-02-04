@@ -30,6 +30,7 @@
 	}
 
 	&__upper {
+		margin-top: 1rem;
 		border-bottom: 1px solid $LightGrayishBlue;
 	}
 	&__lower {
@@ -54,6 +55,6 @@
 	}
 	&__addProject {
 		cursor: pointer;
-		margin-top: 1rem;
+		margin: 1.5rem 0;
 	}
 }

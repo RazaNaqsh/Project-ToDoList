@@ -91,6 +91,7 @@ body {
   letter-spacing: 2px;
 }
 .sideBar__upper {
+  margin-top: 1rem;
   border-bottom: 1px solid hsl(236deg, 33%, 92%);
 }
 .sideBar__tab {
@@ -111,7 +112,7 @@ body {
 }
 .sideBar__addProject {
   cursor: pointer;
-  margin-top: 1rem;
+  margin: 1.5rem 0;
 }
 
 .listContainer {

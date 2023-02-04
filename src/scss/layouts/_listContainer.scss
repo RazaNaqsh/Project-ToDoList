@@ -6,13 +6,18 @@
 	background-color: $VeryDarkDesaturatedBlue;
 	display: grid;
 	grid-template-rows: 6fr 1fr;
-	animation: slide-up 350ms ease-in-out 1 normal;
+	animation: slide-up 450ms ease-in-out 1 normal;
 	@keyframes slide-up {
 		0% {
-			transform: translateY(1000px);
+			transform: translateY(500px);
+			opacity: 0;
+		}
+		40% {
+			opacity: 0;
 		}
 		100% {
-			transform: translateX(0);
+			opacity: 1;
+			transform: translateY(0);
 		}
 	}
 	&__lists {

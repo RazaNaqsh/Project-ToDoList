@@ -15,16 +15,13 @@ body {
 input {
 	accent-color: $LightGrayishBlueHover;
 }
-label {
-	margin-inline: auto;
-}
+
 input[type="text"] {
 	background-color: $VeryDarkDesaturatedBlue;
 	color: $LightGrayishBlue;
 	padding: 1rem;
-	margin-inline: auto;
 	margin-top: 1rem;
-	width: 90%;
+	width: 100%;
 	border: none;
 }
 button {

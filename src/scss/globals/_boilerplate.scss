@@ -12,3 +12,35 @@ body {
 	overflow: hidden;
 	color: $LightGrayishBlue;
 }
+input {
+	accent-color: $LightGrayishBlueHover;
+}
+label {
+	margin-inline: auto;
+}
+input[type="text"] {
+	background-color: $VeryDarkDesaturatedBlue;
+	color: $LightGrayishBlue;
+	padding: 1rem;
+	margin-inline: auto;
+	margin-top: 1rem;
+	width: 90%;
+	border: none;
+}
+button {
+	margin-top: 1.5rem;
+	margin-inline: auto;
+	width: fit-content;
+	padding: 0.6rem 1rem;
+	background-color: $VeryDarkDesaturatedBlue;
+	color: $LightGrayishBlue;
+	border: none;
+	border-radius: 2px;
+	transition: all 100ms ease-in-out;
+	&:hover {
+		transform: scale(0.95);
+	}
+	&:active {
+		transform: scale(0.98);
+	}
+}

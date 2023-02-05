@@ -3,9 +3,11 @@
 .listContainer {
 	grid-column: 2/3;
 	grid-row: 2/3;
-	background-color: $VeryDarkDesaturatedBlue;
 	display: grid;
+	position: relative;
+	background-color: $VeryDarkDesaturatedBlue;
 	grid-template-rows: 6fr 1fr;
+	z-index: 0;
 	animation: slide-up 450ms ease-in-out 1 normal;
 	@keyframes slide-up {
 		0% {
@@ -22,6 +24,7 @@
 	}
 	&__lists {
 		padding: 1rem 2rem;
+		transition: all 150ms ease-in-out;
 	}
 	&__listItem {
 		background-color: $VeryDarkBlue;
@@ -52,5 +55,18 @@
 				background-color: $LightGrayishBlueHover;
 			}
 		}
+	}
+	&__createTaskModal {
+		position: absolute;
+		display: none;
+		flex-direction: column;
+		background-color: $VeryDarkBlue;
+		height: 20vh;
+		width: 30vw;
+		padding: 1rem;
+		box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+			rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+		transform: translate(160px, 100px);
+		z-index: 1;
 	}
 }

@@ -22,6 +22,7 @@ function domFactory(item) {
 
 	const inputCheck = document.createElement("input");
 	inputCheck.type = "checkbox";
+	inputCheck.classList.add("taskCheckbox");
 
 	const para = document.createElement("p");
 	para.textContent = `${item.title}`;
@@ -36,6 +37,10 @@ function displayToDom() {
 	});
 }
 
+function refreshEvent() {
+	addTaskBtn.removeEventListener("click", createTask);
+	addTaskBtn.addEventListener("click", createTask);
+}
 function resetScreen() {
 	list.style.opacity = "1";
 	document.getElementById("taskTitle").value = "";
@@ -67,11 +72,6 @@ function submitTaskData() {
 function createTask() {
 	newTaskModal();
 	submitTaskData();
-}
-
-function refreshEvent() {
-	addTaskBtn.removeEventListener("click", createTask);
-	addTaskBtn.addEventListener("click", createTask);
 }
 
 export default function task() {

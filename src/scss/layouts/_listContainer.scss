@@ -34,6 +34,20 @@
 		padding: 1rem;
 		margin-top: 0.5rem;
 		gap: 2rem;
+		animation: slide-left 450ms ease-in-out 1 normal;
+		@keyframes slide-left {
+			0% {
+				transform: translateX(500px);
+				opacity: 0;
+			}
+			40% {
+				opacity: 0;
+			}
+			100% {
+				opacity: 1;
+				transform: translateX(0);
+			}
+		}
 		p {
 			align-self: center;
 		}

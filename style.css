@@ -14,6 +14,44 @@ body {
   color: hsl(236deg, 33%, 92%);
 }
 
+input {
+  accent-color: hsl(234deg, 39%, 85%);
+}
+
+label {
+  margin-inline: auto;
+}
+
+input[type=text] {
+  background-color: hsl(235deg, 24%, 19%);
+  color: hsl(236deg, 33%, 92%);
+  padding: 1rem;
+  margin-inline: auto;
+  margin-top: 1rem;
+  width: 90%;
+  border: none;
+}
+
+button {
+  margin-top: 1.5rem;
+  margin-inline: auto;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  padding: 0.6rem 1rem;
+  background-color: hsl(235deg, 24%, 19%);
+  color: hsl(236deg, 33%, 92%);
+  border: none;
+  border-radius: 2px;
+  transition: all 100ms ease-in-out;
+}
+button:hover {
+  transform: scale(0.95);
+}
+button:active {
+  transform: scale(0.98);
+}
+
 .header {
   background: linear-gradient(hsl(192deg, 100%, 67%), hsl(280deg, 87%, 65%));
   grid-column: 2/3;
@@ -112,15 +150,17 @@ body {
 }
 .sideBar__addProject {
   cursor: pointer;
-  margin: 1.5rem 0;
+  margin: 1.5rem 0 0.5rem;
 }
 
 .listContainer {
   grid-column: 2/3;
   grid-row: 2/3;
-  background-color: hsl(235deg, 24%, 19%);
   display: grid;
+  position: relative;
+  background-color: hsl(235deg, 24%, 19%);
   grid-template-rows: 6fr 1fr;
+  z-index: 0;
   -webkit-animation: slide-up 450ms ease-in-out 1 normal;
           animation: slide-up 450ms ease-in-out 1 normal;
 }
@@ -152,6 +192,7 @@ body {
 }
 .listContainer__lists {
   padding: 1rem 2rem;
+  transition: all 150ms ease-in-out;
 }
 .listContainer__listItem {
   background-color: hsl(235deg, 21%, 11%);
@@ -181,6 +222,18 @@ body {
 .listContainer__addTask__addBtn:hover {
   transform: scale(0.95);
   background-color: hsl(234deg, 39%, 85%);
+}
+.listContainer__createTaskModal {
+  position: absolute;
+  display: none;
+  flex-direction: column;
+  background-color: hsl(235deg, 21%, 11%);
+  height: 20vh;
+  width: 30vw;
+  padding: 1rem;
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+  transform: translate(160px, 100px);
+  z-index: 1;
 }
 
 .container {

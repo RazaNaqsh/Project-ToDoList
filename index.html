@@ -5,6 +5,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="icon" type="image/x-icon" href="../src/icons/favicon-32x32.png">
     <script src="main.js" defer></script>
 
     <title>Todo-List</title>
@@ -57,7 +59,12 @@
         </aside>
 
         <main class="listContainer">
-            <section class="listContainer__lists">
+            <section id="createTaskModal" class="listContainer__createTaskModal">
+                <label for="taskTitle">Enter Title</label>
+                <input type="text" id="taskTitle">
+                <button id="createTaskBtn">Create</button>
+            </section>
+            <section id="lists" class="listContainer__lists">
                 <div class="listContainer__listItem">
                     <input type="checkbox" name="" id="">
                     <p>Test task</p>
@@ -68,7 +75,7 @@
                 </div>
             </section>
             <section class="listContainer__addTask">
-                <div class="listContainer__addTask__addBtn">
+                <div id="addTask" class="listContainer__addTask__addBtn">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                         <title>plus</title>
                         <path d="M19,13H13V19H11V13H5V11H11V5H13V11H19V13Z" />

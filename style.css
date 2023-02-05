@@ -18,17 +18,12 @@ input {
   accent-color: hsl(234deg, 39%, 85%);
 }
 
-label {
-  margin-inline: auto;
-}
-
 input[type=text] {
   background-color: hsl(235deg, 24%, 19%);
   color: hsl(236deg, 33%, 92%);
   padding: 1rem;
-  margin-inline: auto;
   margin-top: 1rem;
-  width: 90%;
+  width: 100%;
   border: none;
 }
 

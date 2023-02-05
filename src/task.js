@@ -1,3 +1,5 @@
+import taskComplete from "./completeTask";
+
 class TaskCreator {
 	constructor(title) {
 		this.title = title;
@@ -57,6 +59,7 @@ function addToArray(e) {
 		Inbox.push(taskItem);
 		resetScreen();
 		domFactory(taskItem);
+		taskComplete();
 	}
 }
 function newTaskModal() {

@@ -196,6 +196,7 @@ button:active {
   padding: 1rem;
   margin-top: 0.5rem;
   gap: 2rem;
+  transition: all 150ms ease-out;
   -webkit-animation: slide-left 450ms ease-in-out 1 normal;
           animation: slide-left 450ms ease-in-out 1 normal;
 }

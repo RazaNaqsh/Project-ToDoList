@@ -196,6 +196,34 @@ button:active {
   padding: 1rem;
   margin-top: 0.5rem;
   gap: 2rem;
+  -webkit-animation: slide-left 450ms ease-in-out 1 normal;
+          animation: slide-left 450ms ease-in-out 1 normal;
+}
+@-webkit-keyframes slide-left {
+  0% {
+    transform: translateX(500px);
+    opacity: 0;
+  }
+  40% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+@keyframes slide-left {
+  0% {
+    transform: translateX(500px);
+    opacity: 0;
+  }
+  40% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
 }
 .listContainer__listItem p {
   align-self: center;

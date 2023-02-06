@@ -1,18 +1,22 @@
 import taskComplete from "./completeTask";
 
 class TaskCreator {
-	constructor(title) {
+	constructor(title, currentTab) {
 		this.title = title;
+		this.tab = currentTab;
 	}
 }
-const Inbox = [
-	{
-		title: "TestTask1",
-	},
-	{
-		title: "testTask2",
-	},
-];
+let currentTab;
+// const Inbox = [
+// 	{
+// 		title: "TestTask1",
+// 		tab: "Inbox",
+// 	},
+// 	{
+// 		title: "testTask2",
+// 		tab: "Inbox",
+// 	},
+// ];
 
 const taskModal = document.getElementById("createTaskModal");
 const addTaskBtn = document.getElementById("addTask");
@@ -34,7 +38,7 @@ function domFactory(item) {
 }
 
 function displayToDom() {
-	Inbox.forEach((item) => {
+	currentTab.forEach((item) => {
 		domFactory(item);
 	});
 }
@@ -42,15 +46,15 @@ function displayToDom() {
 function resetScreen() {
 	list.style.opacity = "1";
 	document.getElementById("taskTitle").value = "";
-
 	taskModal.style.display = "none";
 }
 function addToArray(e) {
 	e.preventDefault();
 	const taskTitle = document.getElementById("taskTitle").value;
-	if (taskTitle !== "") {
-		const taskItem = new TaskCreator(taskTitle);
-		Inbox.push(taskItem);
+	const isEmpty = taskTitle === "";
+	if (!isEmpty) {
+		const taskItem = new TaskCreator(taskTitle, "Inbox");
+		currentTab.push(taskItem);
 		resetScreen();
 		domFactory(taskItem);
 		taskComplete();
@@ -71,7 +75,8 @@ function createTask() {
 	submitTaskData();
 }
 
-export default function task() {
+export default function task(tab) {
+	currentTab = tab;
 	addTaskBtn.addEventListener("click", createTask);
 	displayToDom();
 }

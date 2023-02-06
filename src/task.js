@@ -39,15 +39,9 @@ function displayToDom() {
 	});
 }
 
-function refreshEvent() {
-	addTaskBtn.removeEventListener("click", createTask);
-	addTaskBtn.addEventListener("click", createTask);
-}
 function resetScreen() {
 	list.style.opacity = "1";
 	document.getElementById("taskTitle").value = "";
-
-	refreshEvent();
 
 	taskModal.style.display = "none";
 }

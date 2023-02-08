@@ -1,18 +1,13 @@
 import taskComplete from "./completeTask";
+import storage from "./storage";
 
 class TaskCreator {
-	constructor(title) {
+	constructor(title, currentTab) {
 		this.title = title;
+		this.tab = currentTab;
 	}
 }
-const Inbox = [
-	{
-		title: "TestTask1",
-	},
-	{
-		title: "testTask2",
-	},
-];
+let currentTab = "default";
 
 const taskModal = document.getElementById("createTaskModal");
 const addTaskBtn = document.getElementById("addTask");
@@ -33,24 +28,19 @@ function domFactory(item) {
 	list.append(divItem);
 }
 
-function displayToDom() {
-	Inbox.forEach((item) => {
-		domFactory(item);
-	});
-}
-
 function resetScreen() {
 	list.style.opacity = "1";
 	document.getElementById("taskTitle").value = "";
-
 	taskModal.style.display = "none";
 }
 function addToArray(e) {
 	e.preventDefault();
 	const taskTitle = document.getElementById("taskTitle").value;
-	if (taskTitle !== "") {
-		const taskItem = new TaskCreator(taskTitle);
-		Inbox.push(taskItem);
+	const isEmpty = taskTitle === "";
+	if (!isEmpty) {
+		const taskItem = new TaskCreator(taskTitle, currentTab);
+		storage.inbox.push(taskItem);
+		// console.log(storage.inbox);
 		resetScreen();
 		domFactory(taskItem);
 		taskComplete();
@@ -71,7 +61,20 @@ function createTask() {
 	submitTaskData();
 }
 
-export default function task() {
-	addTaskBtn.addEventListener("click", createTask);
-	displayToDom();
-}
+export default (function task(tab) {
+	currentTab = tab || "default";
+
+	const create = () => addTaskBtn.addEventListener("click", createTask);
+
+	function displayToDom(storageArray) {
+		storageArray.forEach((item) => {
+			domFactory(item);
+		});
+	}
+
+	// displayToDom();
+	return {
+		create,
+		displayToDom,
+	};
+})();

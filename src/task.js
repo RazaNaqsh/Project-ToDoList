@@ -1,4 +1,5 @@
 import taskComplete from "./completeTask";
+import storage from "./storage";
 
 class TaskCreator {
 	constructor(title, currentTab) {
@@ -6,17 +7,7 @@ class TaskCreator {
 		this.tab = currentTab;
 	}
 }
-let currentTab;
-// const Inbox = [
-// 	{
-// 		title: "TestTask1",
-// 		tab: "Inbox",
-// 	},
-// 	{
-// 		title: "testTask2",
-// 		tab: "Inbox",
-// 	},
-// ];
+let currentTab = "default";
 
 const taskModal = document.getElementById("createTaskModal");
 const addTaskBtn = document.getElementById("addTask");
@@ -37,12 +28,6 @@ function domFactory(item) {
 	list.append(divItem);
 }
 
-function displayToDom() {
-	currentTab.forEach((item) => {
-		domFactory(item);
-	});
-}
-
 function resetScreen() {
 	list.style.opacity = "1";
 	document.getElementById("taskTitle").value = "";
@@ -53,8 +38,9 @@ function addToArray(e) {
 	const taskTitle = document.getElementById("taskTitle").value;
 	const isEmpty = taskTitle === "";
 	if (!isEmpty) {
-		const taskItem = new TaskCreator(taskTitle, "Inbox");
-		currentTab.push(taskItem);
+		const taskItem = new TaskCreator(taskTitle, currentTab);
+		storage.inbox.push(taskItem);
+		// console.log(storage.inbox);
 		resetScreen();
 		domFactory(taskItem);
 		taskComplete();
@@ -75,8 +61,20 @@ function createTask() {
 	submitTaskData();
 }
 
-export default function task(tab) {
-	currentTab = tab;
-	addTaskBtn.addEventListener("click", createTask);
-	displayToDom();
-}
+export default (function task(tab) {
+	currentTab = tab || "default";
+
+	const create = () => addTaskBtn.addEventListener("click", createTask);
+
+	function displayToDom(storageArray) {
+		storageArray.forEach((item) => {
+			domFactory(item);
+		});
+	}
+
+	// displayToDom();
+	return {
+		create,
+		displayToDom,
+	};
+})();

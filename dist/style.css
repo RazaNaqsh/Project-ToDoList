@@ -30,7 +30,6 @@ input[type=text] {
 button {
   margin-top: 1.5rem;
   margin-inline: auto;
-  width: -webkit-fit-content;
   width: -moz-fit-content;
   width: fit-content;
   padding: 0.6rem 1rem;
@@ -51,21 +50,7 @@ button:active {
   background: linear-gradient(hsl(192deg, 100%, 67%), hsl(280deg, 87%, 65%));
   grid-column: 2/3;
   grid-row: 1/2;
-  -webkit-animation: slide-down 450ms ease-in-out 1 normal;
-          animation: slide-down 450ms ease-in-out 1 normal;
-}
-@-webkit-keyframes slide-down {
-  0% {
-    transform: translateY(-500px);
-    opacity: 0;
-  }
-  40% {
-    opacity: 0;
-  }
-  100% {
-    transform: translateY(0);
-    opacity: 1;
-  }
+  animation: slide-down 450ms ease-in-out 1 normal;
 }
 @keyframes slide-down {
   0% {
@@ -90,21 +75,7 @@ button:active {
   grid-row: 1/3;
   border-right: 1px solid hsl(236deg, 33%, 92%);
   padding: 1rem 1rem 0 1rem;
-  -webkit-animation: slide-in 450ms ease-in-out 1 normal;
-          animation: slide-in 450ms ease-in-out 1 normal;
-}
-@-webkit-keyframes slide-in {
-  0% {
-    transform: translateX(-500px);
-    opacity: 0;
-  }
-  40% {
-    opacity: 0;
-  }
-  100% {
-    transform: translateX(0);
-    opacity: 1;
-  }
+  animation: slide-in 450ms ease-in-out 1 normal;
 }
 @keyframes slide-in {
   0% {
@@ -118,6 +89,10 @@ button:active {
     transform: translateX(0);
     opacity: 1;
   }
+}
+.sideBar .active {
+  background: hsl(235deg, 21%, 11%);
+  color: hsl(234deg, 39%, 85%);
 }
 .sideBar__title {
   color: hsl(234deg, 39%, 85%);
@@ -133,10 +108,6 @@ button:active {
   transition: all 150ms ease-in-out;
 }
 .sideBar__tab:hover {
-  background: hsl(235deg, 21%, 11%);
-  color: hsl(234deg, 39%, 85%);
-}
-.sideBar__tab--active {
   background: hsl(235deg, 21%, 11%);
   color: hsl(234deg, 39%, 85%);
 }
@@ -156,21 +127,7 @@ button:active {
   background-color: hsl(235deg, 24%, 19%);
   grid-template-rows: 6fr 1fr;
   z-index: 0;
-  -webkit-animation: slide-up 450ms ease-in-out 1 normal;
-          animation: slide-up 450ms ease-in-out 1 normal;
-}
-@-webkit-keyframes slide-up {
-  0% {
-    transform: translateY(500px);
-    opacity: 0;
-  }
-  40% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  animation: slide-up 450ms ease-in-out 1 normal;
 }
 @keyframes slide-up {
   0% {
@@ -197,21 +154,7 @@ button:active {
   margin-top: 0.5rem;
   gap: 2rem;
   transition: all 150ms ease-out;
-  -webkit-animation: slide-left 450ms ease-in-out 1 normal;
-          animation: slide-left 450ms ease-in-out 1 normal;
-}
-@-webkit-keyframes slide-left {
-  0% {
-    transform: translateX(500px);
-    opacity: 0;
-  }
-  40% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-    transform: translateX(0);
-  }
+  animation: slide-left 450ms ease-in-out 1 normal;
 }
 @keyframes slide-left {
   0% {

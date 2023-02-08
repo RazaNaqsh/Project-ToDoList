@@ -76,5 +76,6 @@ export default (function task(tab) {
 	return {
 		create,
 		displayToDom,
+		currentTab,
 	};
 })();

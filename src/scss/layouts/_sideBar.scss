@@ -24,6 +24,10 @@
 			opacity: 1;
 		}
 	}
+	& .active {
+		background: $VeryDarkBlue;
+		color: $LightGrayishBlueHover;
+	}
 	&__title {
 		color: $LightGrayishBlueHover;
 		letter-spacing: 2px;
@@ -33,18 +37,13 @@
 		margin-top: 1rem;
 		border-bottom: 1px solid $LightGrayishBlue;
 	}
-	&__lower {
-	}
+
 	&__tab {
 		padding: 0.85rem 0.3rem;
 		// border-radius: 5px;
 		cursor: pointer;
 		transition: all 150ms ease-in-out;
 		&:hover {
-			background: $VeryDarkBlue;
-			color: $LightGrayishBlueHover;
-		}
-		&--active {
 			background: $VeryDarkBlue;
 			color: $LightGrayishBlueHover;
 		}

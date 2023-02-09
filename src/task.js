@@ -7,7 +7,7 @@ class TaskCreator {
 		this.tab = currentTab;
 	}
 }
-let currentTab = "default";
+let currentTab;
 
 const taskModal = document.getElementById("createTaskModal");
 const addTaskBtn = document.getElementById("addTask");
@@ -40,7 +40,7 @@ function addToArray(e) {
 	if (!isEmpty) {
 		const taskItem = new TaskCreator(taskTitle, currentTab);
 		storage.inbox.push(taskItem);
-		// console.log(storage.inbox);
+		console.log(storage.inbox);
 		resetScreen();
 		domFactory(taskItem);
 		taskComplete();
@@ -61,8 +61,11 @@ function createTask() {
 	submitTaskData();
 }
 
-export default (function task(tab) {
-	currentTab = tab || "default";
+export default (function task() {
+	const current = (tab) => {
+		currentTab = tab || "Inbox";
+		console.log(currentTab);
+	};
 
 	const create = () => addTaskBtn.addEventListener("click", createTask);
 
@@ -71,11 +74,20 @@ export default (function task(tab) {
 			domFactory(item);
 		});
 	}
+	const clearTaskScreen = () => {
+		let child = list.lastElementChild;
+
+		while (child) {
+			list.removeChild(child);
+			child = list.lastElementChild;
+		}
+	};
 
 	// displayToDom();
 	return {
 		create,
 		displayToDom,
-		currentTab,
+		clearTaskScreen,
+		current,
 	};
 })();

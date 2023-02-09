@@ -40,7 +40,7 @@
             </section>
 
             <div class="sideBar__lower">
-                <section class="sideBar__addProject">
+                <section id="newProject" class="sideBar__addProject">
                     <h2>New Project</h2>
                 </section>
                 <section id="projects" class="sideBar__project">
@@ -64,6 +64,13 @@
                     <label for="taskTitle">Enter Title</label>
                     <input type="text" id="taskTitle" required>
                     <button id="createTaskBtn">Create</button>
+                </form>
+            </section>
+            <section id="createProjectModal" class="listContainer__createProjectModal">
+                <form action="">
+                    <label for="projectTitle">Enter Project Name</label>
+                    <input type="text" id="projectTitle" required>
+                    <button id="createProjectBtn">Create</button>
                 </form>
             </section>
             <section id="lists" class="listContainer__lists">

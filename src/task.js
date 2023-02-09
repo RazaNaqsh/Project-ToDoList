@@ -12,6 +12,7 @@ let currentTab;
 const taskModal = document.getElementById("createTaskModal");
 const addTaskBtn = document.getElementById("addTask");
 const list = document.querySelector("#lists");
+const sideBar = document.querySelector(".sideBar");
 
 function domFactory(item) {
 	const divItem = document.createElement("div");
@@ -31,6 +32,8 @@ function domFactory(item) {
 function resetScreen() {
 	list.style.opacity = "1";
 	document.getElementById("taskTitle").value = "";
+	list.style.pointerEvents = "auto";
+	sideBar.style.pointerEvents = "auto";
 	taskModal.style.display = "none";
 }
 function addToArray(e) {
@@ -40,7 +43,7 @@ function addToArray(e) {
 	if (!isEmpty) {
 		const taskItem = new TaskCreator(taskTitle, currentTab);
 		storage.inbox.push(taskItem);
-		console.log(storage.inbox);
+		// console.log(storage.inbox);
 		resetScreen();
 		domFactory(taskItem);
 		taskComplete();
@@ -48,6 +51,8 @@ function addToArray(e) {
 }
 function newTaskModal() {
 	list.style.opacity = "0.7";
+	list.style.pointerEvents = "none";
+	sideBar.style.pointerEvents = "none";
 	taskModal.style.display = "flex";
 }
 
@@ -64,7 +69,8 @@ function createTask() {
 export default (function task() {
 	const current = (tab) => {
 		currentTab = tab || "Inbox";
-		console.log(currentTab);
+		// console.log(currentTab);
+		return currentTab;
 	};
 
 	const create = () => addTaskBtn.addEventListener("click", createTask);

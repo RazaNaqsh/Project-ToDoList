@@ -74,13 +74,35 @@
 		position: absolute;
 		display: none;
 		flex-direction: column;
-		background-color: $VeryDarkBlue;
+		background: $VeryDarkBlue;
 		height: 20vh;
 		width: 30vw;
 		padding: 1rem;
 		box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
 			rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
-		transform: translate(160px, 100px);
+		top: 7.5rem;
+		left: 12.5rem;
 		z-index: 1;
+		animation: pop-up 200ms ease-in-out 1 normal;
+	}
+	&__createProjectModal {
+		position: absolute;
+		display: none;
+		flex-direction: column;
+		background: $VeryDarkBlue;
+		height: 22.5vh;
+		width: 22.5vw;
+		padding: 1rem;
+		top: 7.5rem;
+		left: 17.5rem;
+		animation: pop-up 200ms ease-in-out 1 normal;
+	}
+	@keyframes pop-up {
+		0% {
+			transform: scale(0);
+		}
+		100% {
+			transform: scale(1);
+		}
 	}
 }

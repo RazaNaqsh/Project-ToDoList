@@ -19,10 +19,15 @@ input {
 input[type="text"] {
 	background-color: $VeryDarkDesaturatedBlue;
 	color: $LightGrayishBlue;
+	font-family: inherit;
 	padding: 1rem;
 	margin-top: 1rem;
 	width: 100%;
 	border: none;
+	transition: all 450ms ease-in-out;
+	&:focus {
+		outline: 2px solid $BrightBlue;
+	}
 }
 button {
 	margin-top: 1.5rem;
@@ -31,6 +36,7 @@ button {
 	padding: 0.6rem 1rem;
 	background-color: $VeryDarkDesaturatedBlue;
 	color: $LightGrayishBlue;
+	font-family: inherit;
 	border: none;
 	border-radius: 2px;
 	transition: all 100ms ease-in-out;

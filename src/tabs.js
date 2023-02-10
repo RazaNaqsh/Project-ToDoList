@@ -10,8 +10,10 @@ const projectTab = document.getElementById("projects");
 const sideBar = document.querySelector(".sideBar");
 const list = document.querySelector("#lists");
 
+const newProjectBtn = document.getElementById("newProject");
 const projectModal = document.getElementById("createProjectModal");
 
+//  display project section and setup
 function addEvent(project, projectItem) {
 	project.addEventListener("click", () => {
 		task.current(projectItem);
@@ -42,18 +44,31 @@ function displayProjects() {
 		projectFactory(projectItem);
 	});
 }
-function createProjectModal() {
-	list.style.opacity = "0.7";
-	list.style.pointerEvents = "none";
-	sideBar.style.pointerEvents = "none";
-	projectModal.style.display = "flex";
-}
-function resetScreen() {
+
+//  Create Project section
+function resetProjectScreen() {
 	list.style.opacity = "1";
 	document.getElementById("projectTitle").value = "";
 	list.style.pointerEvents = "auto";
 	sideBar.style.pointerEvents = "auto";
 	projectModal.style.display = "none";
+}
+
+function closeWindow(e) {
+	const outsideClick =
+		!projectModal.contains(e.target) && !newProjectBtn.contains(e.target);
+	if (outsideClick) {
+		resetProjectScreen();
+		document.removeEventListener("click", closeWindow);
+	}
+}
+
+function createProjectModal() {
+	list.style.opacity = "0.7";
+	list.style.pointerEvents = "none";
+	sideBar.style.pointerEvents = "none";
+	projectModal.style.display = "flex";
+	document.addEventListener("click", closeWindow);
 }
 
 function addToArray(e) {
@@ -63,7 +78,7 @@ function addToArray(e) {
 	if (!isEmpty) {
 		const projectItem = projectTitle;
 		projectArray.push(projectItem);
-		resetScreen();
+		resetProjectScreen();
 		projectFactory(projectItem);
 		taskComplete();
 	}
@@ -79,7 +94,7 @@ function createNewProject() {
 
 export default function tabs() {
 	const inboxTab = document.getElementById("defaultTab");
-	const newProjectBtn = document.getElementById("newProject");
+
 	inboxTab.addEventListener("click", defaultTab);
 	displayProjects();
 	newProjectBtn.addEventListener("click", createNewProject);

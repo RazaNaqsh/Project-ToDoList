@@ -10,6 +10,7 @@ function taskStatusCheck(e) {
 
 function handleEvent(taskItem) {
 	taskItem.addEventListener("click", taskStatusCheck);
+	// taskItem.addEventListener("click", transferCompletedTask);
 }
 
 export default function taskComplete() {

@@ -43,6 +43,7 @@
 		// border-radius: 5px;
 		cursor: pointer;
 		transition: all 150ms ease-in-out;
+		animation: slide-in 350ms ease-in-out 1 normal;
 		&:hover {
 			background: $VeryDarkBlue;
 			color: $LightGrayishBlueHover;
@@ -51,9 +52,16 @@
 
 	&__project {
 		border-bottom: 1px solid $LightGrayishBlue;
+		max-height: 15rem;
+		overflow: auto;
+		transition: all 200ms ease-in-out;
 	}
 	&__addProject {
 		cursor: pointer;
 		margin: 1.5rem 0 0.5rem;
+		transition: all 200ms ease-in-out;
+		&:hover {
+			color: $lightAqua;
+		}
 	}
 }

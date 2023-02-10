@@ -112,6 +112,7 @@ button:active {
   padding: 0.85rem 0.3rem;
   cursor: pointer;
   transition: all 150ms ease-in-out;
+  animation: slide-in 350ms ease-in-out 1 normal;
 }
 .sideBar__tab:hover {
   background: hsl(235deg, 21%, 11%);
@@ -119,10 +120,17 @@ button:active {
 }
 .sideBar__project {
   border-bottom: 1px solid hsl(236deg, 33%, 92%);
+  max-height: 15rem;
+  overflow: auto;
+  transition: all 200ms ease-in-out;
 }
 .sideBar__addProject {
   cursor: pointer;
   margin: 1.5rem 0 0.5rem;
+  transition: all 200ms ease-in-out;
+}
+.sideBar__addProject:hover {
+  color: #22d3ee;
 }
 
 .listContainer {
@@ -153,6 +161,7 @@ button:active {
   transition: all 150ms ease-in-out;
 }
 .listContainer__listItem {
+  position: relative;
   background-color: hsl(235deg, 21%, 11%);
   display: flex;
   align-items: baseline;
@@ -177,6 +186,11 @@ button:active {
 }
 .listContainer__listItem p {
   align-self: center;
+}
+.listContainer__listItem .delete {
+  position: absolute;
+  right: 1rem;
+  cursor: pointer;
 }
 .listContainer__addTask {
   position: relative;

@@ -14,6 +14,12 @@ const newProjectBtn = document.getElementById("newProject");
 const projectModal = document.getElementById("createProjectModal");
 
 //  display project section and setup
+function makeProjectActive(project) {
+	const allProjects = document.querySelectorAll(".active");
+	allProjects.forEach((item) => item.classList.remove("active"));
+	// console.log(Array.from(allProjects));
+	project.classList.add("active");
+}
 function addEvent(project, projectItem) {
 	project.addEventListener("click", () => {
 		task.current(projectItem);
@@ -24,12 +30,14 @@ function addEvent(project, projectItem) {
 		);
 		task.displayToDom(projectPersonalArray);
 		taskComplete();
+		makeProjectActive(project);
 	});
 }
 
-function projectFactory(projectItem) {
+function projectFactory(projectItem, index) {
 	const project = document.createElement("div");
 	project.classList.add("sideBar__tab");
+	project.setAttribute("data-index", `${index}`);
 	projectTab.append(project);
 
 	const projectName = document.createElement("h3");
@@ -40,8 +48,8 @@ function projectFactory(projectItem) {
 }
 
 function displayProjects() {
-	projectArray.forEach((projectItem) => {
-		projectFactory(projectItem);
+	projectArray.forEach((projectItem, index) => {
+		projectFactory(projectItem, index);
 	});
 }
 
@@ -79,7 +87,7 @@ function addToArray(e) {
 		const projectItem = projectTitle;
 		projectArray.push(projectItem);
 		resetProjectScreen();
-		projectFactory(projectItem);
+		projectFactory(projectItem, projectArray.indexOf(projectItem));
 		taskComplete();
 	}
 }

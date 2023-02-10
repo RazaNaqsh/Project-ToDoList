@@ -27,6 +27,7 @@
 		transition: all 150ms ease-in-out;
 	}
 	&__listItem {
+		position: relative;
 		background-color: $VeryDarkBlue;
 		display: flex;
 		align-items: baseline;
@@ -50,6 +51,11 @@
 		}
 		p {
 			align-self: center;
+		}
+		& .delete {
+			position: absolute;
+			right: 1rem;
+			cursor: pointer;
 		}
 	}
 	&__addTask {

@@ -1,4 +1,5 @@
 import taskComplete from "./completeTask";
+import deleteTasks from "./deleteTasks";
 import storage from "./storage";
 
 class TaskCreator {
@@ -14,9 +15,10 @@ const addTaskBtn = document.getElementById("addTask");
 const list = document.querySelector("#lists");
 const sideBar = document.querySelector(".sideBar");
 
-function domFactory(item) {
+function domFactory(item, index) {
 	const divItem = document.createElement("div");
 	divItem.classList.add("listContainer__listItem");
+	divItem.setAttribute("data-index", `${index}`);
 
 	const inputCheck = document.createElement("input");
 	inputCheck.type = "checkbox";
@@ -25,7 +27,11 @@ function domFactory(item) {
 	const para = document.createElement("p");
 	para.textContent = `${item.title}`;
 
-	divItem.append(inputCheck, para);
+	const deleteEle = document.createElement("div");
+	deleteEle.classList.add("delete");
+	deleteEle.textContent = "X";
+
+	divItem.append(inputCheck, para, deleteEle);
 	list.append(divItem);
 }
 
@@ -46,22 +52,12 @@ function addToArray(e) {
 		storage.inbox.push(taskItem);
 		// console.log(storage.inbox);
 		resetScreen();
-		domFactory(taskItem);
+		domFactory(taskItem, storage.inbox.indexOf(taskItem));
 		taskComplete();
+		// deleteTasks();
 	}
 }
-// function cancelScreen() {
-// 	document.querySelector(".container").addEventListener("click", (e) => {
-// 		if (taskModal.contains(e.target)) {
-// 			// Clicked in box
-// 			console.log("inside");
-// 		} else {
-// 			// Clicked outside the box
-// 			console.log("outside");
-// 			// resetScreen();
-// 		}
-// 	});
-// }
+
 function closeWindow(e) {
 	const outsideClick =
 		!taskModal.contains(e.target) && !addTaskBtn.contains(e.target);
@@ -98,8 +94,8 @@ export default (function task() {
 	const create = () => addTaskBtn.addEventListener("click", createTask);
 
 	function displayToDom(storageArray) {
-		storageArray.forEach((item) => {
-			domFactory(item);
+		storageArray.forEach((item, index) => {
+			domFactory(item, index);
 		});
 	}
 	const clearTaskScreen = () => {

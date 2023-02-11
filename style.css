@@ -111,6 +111,10 @@ button:active {
 }
 .sideBar__tab {
   padding: 0.85rem 0.3rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-right: 1rem;
   cursor: pointer;
   transition: all 150ms ease-in-out;
   animation: slide-in 350ms ease-in-out 1 normal;
@@ -118,6 +122,9 @@ button:active {
 .sideBar__tab:hover {
   background: hsl(235deg, 21%, 11%);
   color: hsl(234deg, 39%, 85%);
+}
+.sideBar__tab .delIcon {
+  height: 25px;
 }
 .sideBar__project {
   border-bottom: 1px solid hsl(236deg, 33%, 92%);
@@ -197,7 +204,6 @@ button:active {
 }
 .listContainer__listItem .delIcon {
   height: 25px;
-  fill: red;
 }
 .listContainer__addTask {
   position: relative;

@@ -40,6 +40,10 @@
 
 	&__tab {
 		padding: 0.85rem 0.3rem;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		padding-right: 1rem;
 		// border-radius: 5px;
 		cursor: pointer;
 		transition: all 150ms ease-in-out;
@@ -47,6 +51,9 @@
 		&:hover {
 			background: $VeryDarkBlue;
 			color: $LightGrayishBlueHover;
+		}
+		& .delIcon {
+			height: 25px;
 		}
 	}
 

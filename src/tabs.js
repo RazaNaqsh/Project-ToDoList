@@ -2,6 +2,7 @@ import defaultTab from "./defaultTab";
 import task from "./task";
 import storage from "./storage";
 import taskComplete from "./completeTask";
+import deleteImage from "./icons/delete-forever.svg";
 
 const projectArray = ["Family", "Personal", "Secret"];
 
@@ -33,17 +34,35 @@ function addEvent(project, projectItem) {
 		makeProjectActive(project);
 	});
 }
+function addDeleteEvent(delImg) {
+	delImg.addEventListener("click", (e) => {
+		console.log("konnichiwa");
+		const domArray = Array.from(document.querySelectorAll(".projectTab"));
+		const domEleToRemove = domArray.indexOf(e.target.parentElement);
+		projectTab.removeChild(e.target.parentElement);
+		projectArray.splice(domEleToRemove, 1);
+		console.log(projectArray);
+
+		// console.log(domEleToRemove);
+	});
+}
 
 function projectFactory(projectItem, index) {
 	const project = document.createElement("div");
-	project.classList.add("sideBar__tab");
+	project.classList.add("sideBar__tab", "projectTab");
 	project.setAttribute("data-index", `${index}`);
 	projectTab.append(project);
 
 	const projectName = document.createElement("h3");
 	projectName.textContent = `${projectItem}`;
-	project.append(projectName);
 
+	// const deleteEle = document.createElement("div");
+	// deleteEle.classList.add("delete");
+	const delImg = new Image();
+	delImg.src = deleteImage;
+	delImg.classList.add("delIcon");
+	project.append(projectName, delImg);
+	addDeleteEvent(delImg);
 	addEvent(project, projectItem);
 }
 

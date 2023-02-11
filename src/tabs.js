@@ -87,7 +87,8 @@ function addToArray(e) {
 		const projectItem = projectTitle;
 		projectArray.push(projectItem);
 		resetProjectScreen();
-		projectFactory(projectItem, projectArray.indexOf(projectItem));
+		projectFactory(projectItem, storage.inbox.indexOf(projectItem));
+		console.log(storage.inbox);
 		taskComplete();
 	}
 }

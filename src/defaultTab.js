@@ -12,6 +12,7 @@ function makeActive() {
 export default function defaultTab() {
 	makeActive();
 	task.clearTaskScreen();
+	task.current("Inbox");
 	task.create();
 	task.displayToDom(storage.inbox);
 	taskComplete();

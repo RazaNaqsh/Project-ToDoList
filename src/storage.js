@@ -1,11 +1,11 @@
 const storage = (() => {
 	const inbox = [
 		{
-			title: "testttt",
+			title: "Test Task 1",
 			tab: "Inbox",
 		},
 		{
-			title: "teoostttt",
+			title: "Test Task 2",
 			tab: "Inbox",
 		},
 	];

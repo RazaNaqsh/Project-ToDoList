@@ -1,6 +1,7 @@
 import taskComplete from "./completeTask";
 import storage from "./storage";
 // import taskFunctions from "./task";
+import deleteImage from "./icons/delete-forever.svg";
 
 class TaskCreator {
 	constructor(title, currentTab) {
@@ -17,9 +18,11 @@ const sideBar = document.querySelector(".sideBar");
 
 function deleteTasks(div) {
 	function deleteFromStorage(e) {
-		const index = e.target.parentElement.getAttribute("data-index");
+		const index =
+			e.target.parentElement.parentElement.getAttribute("data-index");
+		console.log(index);
 		storage.inbox.splice(index, 1);
-		const domEleToRemove = e.target.parentElement;
+		const domEleToRemove = e.target.parentElement.parentElement;
 		list.removeChild(domEleToRemove);
 		// console.log(domEleToRemove);
 		console.log(storage.inbox);
@@ -42,9 +45,14 @@ function domFactory(item, index) {
 
 	const deleteEle = document.createElement("div");
 	deleteEle.classList.add("delete");
-	deleteEle.textContent = "X";
+	const delImg = new Image();
+	delImg.src = deleteImage;
+	delImg.classList.add("delIcon");
+
+	// deleteEle.textContent = "X";
 
 	divItem.append(inputCheck, para, deleteEle);
+	deleteEle.append(delImg);
 	list.append(divItem);
 
 	// Adds delete task Functionality
@@ -87,6 +95,8 @@ function newTaskModal() {
 	sideBar.style.pointerEvents = "none";
 	taskModal.style.display = "flex";
 	document.addEventListener("click", closeWindow);
+	// console.log(document.getElementById("taskTitle"));
+	// (() => document.getElementById("taskTitle").focus)();
 }
 
 function submitTaskData() {

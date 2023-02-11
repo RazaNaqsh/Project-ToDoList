@@ -1,6 +1,5 @@
 import taskComplete from "./completeTask";
 import storage from "./storage";
-// import taskFunctions from "./task";
 import deleteImage from "./icons/delete-forever.svg";
 
 class TaskCreator {
@@ -20,8 +19,11 @@ function deleteTasks(div) {
 	function deleteFromStorage(e) {
 		const index =
 			e.target.parentElement.parentElement.getAttribute("data-index");
-		console.log(index);
-		storage.inbox.splice(index, 1);
+		const domArray = Array.from(list.children);
+		const domIndex = domArray.indexOf(e.target.parentElement.parentElement);
+		// console.log(domIndex);
+		if (currentTab === "Inbox") storage.inbox.splice(domIndex, 1);
+		else storage.inbox.splice(index, 1);
 		const domEleToRemove = e.target.parentElement.parentElement;
 		list.removeChild(domEleToRemove);
 		// console.log(domEleToRemove);
@@ -57,6 +59,8 @@ function domFactory(item, index) {
 
 	// Adds delete task Functionality
 	deleteTasks(deleteEle);
+	// const domIndex = Array.from(list.children);
+	// console.log(domIndex);
 }
 
 function resetScreen() {

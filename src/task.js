@@ -1,6 +1,6 @@
 import taskComplete from "./completeTask";
 import storage from "./storage";
-import taskFunctions from "./task";
+// import taskFunctions from "./task";
 
 class TaskCreator {
 	constructor(title, currentTab) {
@@ -14,6 +14,19 @@ const taskModal = document.getElementById("createTaskModal");
 const addTaskBtn = document.getElementById("addTask");
 const list = document.querySelector("#lists");
 const sideBar = document.querySelector(".sideBar");
+
+function deleteTasks(div) {
+	function deleteFromStorage(e) {
+		const index = e.target.parentElement.getAttribute("data-index");
+		storage.inbox.splice(index, 1);
+		const domEleToRemove = e.target.parentElement;
+		list.removeChild(domEleToRemove);
+		// console.log(domEleToRemove);
+		console.log(storage.inbox);
+		// console.log(index);
+	}
+	div.addEventListener("click", deleteFromStorage);
+}
 
 function domFactory(item, index) {
 	const divItem = document.createElement("div");
@@ -33,7 +46,9 @@ function domFactory(item, index) {
 
 	divItem.append(inputCheck, para, deleteEle);
 	list.append(divItem);
-	taskFunctions.deleteTasks(deleteEle);
+
+	// Adds delete task Functionality
+	deleteTasks(deleteEle);
 }
 
 function resetScreen() {
@@ -55,7 +70,6 @@ function addToArray(e) {
 		resetScreen();
 		domFactory(taskItem, storage.inbox.indexOf(taskItem));
 		taskComplete();
-		// deleteTasks();
 	}
 }
 
@@ -108,25 +122,11 @@ export default (function task() {
 		}
 	};
 
-	function deleteTasks(div) {
-		function deleteFromStorage(e) {
-			const index = e.target.parentElement.getAttribute("data-index");
-			storage.inbox.splice(index, 1);
-			const domEleToRemove = e.target.parentElement;
-			list.removeChild(domEleToRemove);
-			// console.log(domEleToRemove);
-			console.log(storage.inbox);
-			// console.log(index);
-		}
-		div.addEventListener("click", deleteFromStorage);
-	}
-
 	// displayToDom();
 	return {
 		create,
 		displayToDom,
 		clearTaskScreen,
 		current,
-		deleteTasks,
 	};
 })();

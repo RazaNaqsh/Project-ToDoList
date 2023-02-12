@@ -21,22 +21,26 @@ function makeProjectActive(project) {
 	// console.log(Array.from(allProjects));
 	project.classList.add("active");
 }
-function addEvent(project, projectItem) {
-	project.addEventListener("click", () => {
-		task.current(projectItem);
-		task.clearTaskScreen();
-		task.create();
-		const projectPersonalArray = storage.inbox.filter(
-			(item) => item.tab === projectItem
-		);
-		task.displayToDom(projectPersonalArray);
-		taskComplete();
-		makeProjectActive(project);
+function addLoadEvents(project, projectItem, delImg) {
+	project.addEventListener("click", (e) => {
+		const outsideDel = project.contains(e.target) && !delImg.contains(e.target);
+		if (outsideDel) {
+			task.current(projectItem);
+			task.clearTaskScreen();
+			task.create();
+			const projectPersonalArray = storage.inbox.filter(
+				(item) => item.tab === projectItem
+			);
+			task.displayToDom(projectPersonalArray);
+			taskComplete();
+			makeProjectActive(project);
+		}
 	});
 }
 function addDeleteEvent(delImg) {
 	delImg.addEventListener("click", (e) => {
-		console.log("konnichiwa");
+		// console.log("konnichiwa");
+
 		const domArray = Array.from(document.querySelectorAll(".projectTab"));
 		const domEleToRemove = domArray.indexOf(e.target.parentElement);
 		projectTab.removeChild(e.target.parentElement);
@@ -63,7 +67,7 @@ function projectFactory(projectItem, index) {
 	delImg.classList.add("delIcon");
 	project.append(projectName, delImg);
 	addDeleteEvent(delImg);
-	addEvent(project, projectItem);
+	addLoadEvents(project, projectItem, delImg);
 }
 
 function displayProjects() {
@@ -95,6 +99,7 @@ function createProjectModal() {
 	list.style.pointerEvents = "none";
 	sideBar.style.pointerEvents = "none";
 	projectModal.style.display = "flex";
+	document.getElementById("projectTitle").focus();
 	document.addEventListener("click", closeWindow);
 }
 

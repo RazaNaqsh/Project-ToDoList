@@ -98,9 +98,9 @@ function newTaskModal() {
 	list.style.pointerEvents = "none";
 	sideBar.style.pointerEvents = "none";
 	taskModal.style.display = "flex";
+	document.getElementById("taskTitle").focus();
 	document.addEventListener("click", closeWindow);
-	// console.log(document.getElementById("taskTitle"));
-	// (() => document.getElementById("taskTitle").focus)();
+	console.log(document.getElementById("taskTitle"));
 }
 
 function submitTaskData() {

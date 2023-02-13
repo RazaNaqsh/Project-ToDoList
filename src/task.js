@@ -3,12 +3,14 @@ import storage from "./storage";
 import deleteImage from "./icons/delete-forever.svg";
 
 class TaskCreator {
-	constructor(title, currentTab) {
+	constructor(title, currentTab, taskCount) {
 		this.title = title;
 		this.tab = currentTab;
+		this.taskCount = taskCount;
 	}
 }
 let currentTab;
+let taskCountId = 0;
 
 const taskModal = document.getElementById("createTaskModal");
 const addTaskBtn = document.getElementById("addTask");
@@ -76,11 +78,12 @@ function addToArray(e) {
 	const taskTitle = document.getElementById("taskTitle").value;
 	const isEmpty = taskTitle === "";
 	if (!isEmpty) {
-		const taskItem = new TaskCreator(taskTitle, currentTab);
+		const taskItem = new TaskCreator(taskTitle, currentTab, taskCountId++);
 		storage.inbox.push(taskItem);
 		console.log(storage.inbox);
 		resetScreen();
 		domFactory(taskItem, storage.inbox.indexOf(taskItem));
+
 		taskComplete();
 	}
 }
@@ -123,8 +126,8 @@ export default (function task() {
 	const create = () => addTaskBtn.addEventListener("click", createTask);
 
 	function displayToDom(storageArray) {
-		storageArray.forEach((item, index) => {
-			domFactory(item, index);
+		storageArray.forEach((item) => {
+			domFactory(item, storage.inbox.indexOf(item));
 		});
 	}
 	const clearTaskScreen = () => {

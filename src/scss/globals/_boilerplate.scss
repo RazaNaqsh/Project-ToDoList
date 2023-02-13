@@ -17,7 +17,8 @@ input {
 	accent-color: $LightGrayishBlueHover;
 }
 
-input[type="text"] {
+input[type="text"],
+textarea {
 	background-color: $VeryDarkDesaturatedBlue;
 	color: $LightGrayishBlue;
 	font-family: inherit;
@@ -29,6 +30,13 @@ input[type="text"] {
 	&:focus {
 		outline: 2px solid $BrightBlue;
 	}
+}
+textarea {
+	resize: none;
+}
+input[type="radio"] {
+	margin-right: 1rem;
+	accent-color: $VeryDarkBlue;
 }
 button {
 	margin-top: 1.5rem;

@@ -189,7 +189,6 @@ button:active {
   max-height: 6vh;
   text-overflow: ellipsis;
   gap: 2rem;
-  cursor: pointer;
   transition: all 150ms ease-out;
   animation: slide-left 450ms ease-in-out 1 normal;
 }
@@ -206,6 +205,9 @@ button:active {
     transform: translateX(0);
   }
 }
+.listContainer__listItem input {
+  cursor: pointer;
+}
 .listContainer__listItem p {
   max-width: 60%;
 }
@@ -215,6 +217,10 @@ button:active {
   top: 0.85rem;
   right: 4rem;
   height: 25px;
+  transition: inherit;
+}
+.listContainer__listItem .editIcon:hover {
+  transform: scale(0.9);
 }
 .listContainer__listItem .delIcon {
   position: absolute;
@@ -222,25 +228,35 @@ button:active {
   top: 0.85rem;
   cursor: pointer;
   height: 25px;
+  transition: inherit;
+}
+.listContainer__listItem .delIcon:hover {
+  transform: scale(0.9);
 }
 .listContainer__listItem .dateContainer {
   position: absolute;
   right: 8rem;
-  top: 0.6rem;
+  top: 0.7rem;
   width: -moz-fit-content;
   width: fit-content;
-  border: 1px solid hsl(220deg, 98%, 61%);
   padding: 0.5rem;
 }
 .listContainer__listItem .dateContainer p {
+  font-size: 0.9rem;
   max-width: 7rem;
 }
 .listContainer__listItem .taskDetails {
   position: absolute;
   right: 15rem;
   top: 0.6rem;
+  font-size: 0.9rem;
   border: 1px solid hsl(220deg, 98%, 61%);
   padding: 0.5rem;
+  cursor: pointer;
+  transition: all 100ms ease-out;
+}
+.listContainer__listItem .taskDetails:hover {
+  transform: scale(0.95);
 }
 .listContainer__addTask {
   position: relative;

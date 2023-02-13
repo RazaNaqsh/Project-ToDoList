@@ -1,16 +1,15 @@
 import taskComplete from "./completeTask";
 import storage from "./storage";
 import deleteImage from "./icons/delete-forever.svg";
+import taskFunctions from "./task";
 
 class TaskCreator {
-	constructor(title, currentTab, taskCount) {
+	constructor(title, currentTab) {
 		this.title = title;
 		this.tab = currentTab;
-		this.taskCount = taskCount;
 	}
 }
 let currentTab;
-let taskCountId = 0;
 
 const taskModal = document.getElementById("createTaskModal");
 const addTaskBtn = document.getElementById("addTask");
@@ -21,13 +20,21 @@ function deleteTasks(div) {
 	function deleteFromStorage(e) {
 		const index =
 			e.target.parentElement.parentElement.getAttribute("data-index");
-		const domArray = Array.from(list.children);
-		const domIndex = domArray.indexOf(e.target.parentElement.parentElement);
+		// const domArray = Array.from(list.children);
+		// const domIndex = domArray.indexOf(e.target.parentElement.parentElement);
 		// console.log(domIndex);
-		if (currentTab === "Inbox") storage.inbox.splice(domIndex, 1);
-		else storage.inbox.splice(index, 1);
-		const domEleToRemove = e.target.parentElement.parentElement;
-		list.removeChild(domEleToRemove);
+		// if (currentTab === "Inbox")
+		// storage.inbox.splice(domIndex, 1);
+		// else
+		storage.inbox.splice(index, 1);
+		// const domEleToRemove = e.target.parentElement.parentElement;
+		// list.removeChild(domEleToRemove);
+		taskFunctions.clearTaskScreen();
+		if (currentTab === "Inbox") taskFunctions.displayToDom(storage.inbox);
+		else
+			taskFunctions.displayToDom(
+				storage.inbox.filter((item) => item.tab === currentTab)
+			);
 		// console.log(domEleToRemove);
 		console.log(storage.inbox);
 		// console.log(index);
@@ -78,7 +85,7 @@ function addToArray(e) {
 	const taskTitle = document.getElementById("taskTitle").value;
 	const isEmpty = taskTitle === "";
 	if (!isEmpty) {
-		const taskItem = new TaskCreator(taskTitle, currentTab, taskCountId++);
+		const taskItem = new TaskCreator(taskTitle, currentTab);
 		storage.inbox.push(taskItem);
 		console.log(storage.inbox);
 		resetScreen();
@@ -103,7 +110,7 @@ function newTaskModal() {
 	taskModal.style.display = "flex";
 	document.getElementById("taskTitle").focus();
 	document.addEventListener("click", closeWindow);
-	console.log(document.getElementById("taskTitle"));
+	// console.log(document.getElementById("taskTitle"));
 }
 
 function submitTaskData() {

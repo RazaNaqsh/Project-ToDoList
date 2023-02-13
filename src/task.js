@@ -4,9 +4,13 @@ import deleteImage from "./icons/delete-forever.svg";
 import taskFunctions from "./task";
 
 class TaskCreator {
-	constructor(title, currentTab) {
+	constructor(title, currentTab, desc, dueDate, priority) {
 		this.title = title;
 		this.tab = currentTab;
+		this.description = desc;
+		this.dueDate = dueDate;
+		this.priority = priority;
+		this.status = "Incomplete";
 	}
 }
 let currentTab;
@@ -75,6 +79,8 @@ function domFactory(item, index) {
 function resetScreen() {
 	list.style.opacity = "1";
 	document.getElementById("taskTitle").value = "";
+	document.getElementById("taskDescription").value = "";
+	document.getElementById("taskDueDate").value = "";
 	list.style.pointerEvents = "auto";
 	sideBar.style.pointerEvents = "auto";
 	taskModal.style.display = "none";
@@ -83,9 +89,30 @@ function resetScreen() {
 function addToArray(e) {
 	e.preventDefault();
 	const taskTitle = document.getElementById("taskTitle").value;
-	const isEmpty = taskTitle === "";
-	if (!isEmpty) {
-		const taskItem = new TaskCreator(taskTitle, currentTab);
+	const taskDesc = document.getElementById("taskDescription").value;
+	const taskDueDate = document.getElementById("taskDueDate").value;
+	// const taskPriority = document.querySelector(
+	// 	'input[name="taskPriority"]:checked'
+	// ).value;
+	let taskPriority = "";
+	document.getElementsByName("taskPriority").forEach((radio) => {
+		if (radio.checked) taskPriority = radio.value;
+	});
+
+	const isEmpty =
+		taskTitle !== "" &&
+		taskDesc !== "" &&
+		taskDueDate !== "" &&
+		taskPriority !== "";
+
+	if (isEmpty) {
+		const taskItem = new TaskCreator(
+			taskTitle,
+			currentTab,
+			taskDesc,
+			taskDueDate,
+			taskPriority
+		);
 		storage.inbox.push(taskItem);
 		console.log(storage.inbox);
 		resetScreen();

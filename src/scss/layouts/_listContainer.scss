@@ -83,7 +83,7 @@
 	}
 	&__createTaskModal {
 		position: absolute;
-		display: flex;
+		display: none;
 		flex-direction: column;
 		background: $VeryDarkBlue;
 		max-height: 45vh;

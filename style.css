@@ -236,7 +236,7 @@ button:active {
 }
 .listContainer__createTaskModal {
   position: absolute;
-  display: flex;
+  display: none;
   flex-direction: column;
   background: hsl(235deg, 21%, 11%);
   max-height: 45vh;

@@ -1,8 +1,13 @@
+import { format, compareAsc } from "date-fns";
 import taskComplete from "./completeTask";
 import storage from "./storage";
 import deleteImage from "./icons/delete-forever.svg";
 import editImage from "./icons/note-edit.svg";
 import taskFunctions from "./task";
+
+// const stPattysDay = new Date("2020/03/17");
+// const formattedDate2 = format(stPattysDay, "MMMM dd, yyyy");
+// console.log(formattedDate2);
 
 class TaskCreator {
 	constructor(title, currentTab, desc, dueDate, priority) {
@@ -70,7 +75,8 @@ function domFactory(item, index) {
 	const dateContainer = document.createElement("div");
 	dateContainer.classList.add("dateContainer");
 	const date = document.createElement("p");
-	date.textContent = `${item.dueDate}`;
+	const formattedDate = format(new Date(item.dueDate), "MMM dd, yyyy");
+	date.textContent = `${formattedDate}`;
 	dateContainer.append(date);
 
 	const delImg = new Image();
@@ -110,6 +116,7 @@ function addToArray(e) {
 	const taskTitle = document.getElementById("taskTitle").value;
 	const taskDesc = document.getElementById("taskDescription").value;
 	const taskDueDate = document.getElementById("taskDueDate").value;
+	// const formattedDate = format(taskDueDate, 'MMMM dd, yyyy')
 	// const taskPriority = document.querySelector(
 	// 	'input[name="taskPriority"]:checked'
 	// ).value;

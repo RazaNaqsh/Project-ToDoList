@@ -189,7 +189,6 @@ button:active {
   max-height: 6vh;
   text-overflow: ellipsis;
   gap: 2rem;
-  transition: all 150ms ease-out;
   animation: slide-left 450ms ease-in-out 1 normal;
 }
 @keyframes slide-left {
@@ -197,7 +196,7 @@ button:active {
     transform: translateX(500px);
     opacity: 0;
   }
-  40% {
+  50% {
     opacity: 0;
   }
   100% {
@@ -236,7 +235,7 @@ button:active {
 .listContainer__listItem .dateContainer {
   position: absolute;
   right: 8rem;
-  top: 0.7rem;
+  top: 0.8rem;
   width: -moz-fit-content;
   width: fit-content;
   padding: 0.5rem;
@@ -248,7 +247,7 @@ button:active {
 .listContainer__listItem .taskDetails {
   position: absolute;
   right: 15rem;
-  top: 0.6rem;
+  top: 0.7rem;
   font-size: 0.9rem;
   border: 1px solid hsl(220deg, 98%, 61%);
   padding: 0.5rem;

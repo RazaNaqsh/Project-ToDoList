@@ -1,5 +1,5 @@
-import { format, compareAsc } from "date-fns";
-import taskComplete from "./completeTask";
+import { format } from "date-fns";
+import checkTaskComplete from "./completeTask";
 import storage from "./storage";
 import deleteImage from "./icons/delete-forever.svg";
 import editImage from "./icons/note-edit.svg";
@@ -87,12 +87,13 @@ function domFactory(item, index) {
 	editImg.src = editImage;
 	editImg.classList.add("editIcon");
 	// deleteEle.textContent = "X";
-
 	divItem.append(inputCheck, para, taskDetails, dateContainer, delImg, editImg);
+	checkTaskComplete();
 	// deleteEle.append(delImg);
 	list.append(divItem);
 
 	// Adds delete task Functionality
+	checkTaskComplete();
 	deleteTasks(delImg);
 	// const domIndex = Array.from(list.children);
 	// console.log(domIndex);
@@ -144,7 +145,7 @@ function addToArray(e) {
 		resetScreen();
 		domFactory(taskItem, storage.inbox.indexOf(taskItem));
 
-		taskComplete();
+		checkTaskComplete();
 	}
 }
 

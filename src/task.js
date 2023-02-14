@@ -26,6 +26,11 @@ const addTaskBtn = document.getElementById("addTask");
 const list = document.querySelector("#lists");
 const sideBar = document.querySelector(".sideBar");
 
+const taskTitle = document.getElementById("taskTitle");
+const taskDesc = document.getElementById("taskDescription");
+const taskDue = document.getElementById("taskDueDate");
+const priorityRadios = document.getElementsByName("taskPriority");
+
 function deleteTasks(div) {
 	function deleteFromStorage(e) {
 		const index = e.target.parentElement.getAttribute("data-index");
@@ -49,6 +54,37 @@ function deleteTasks(div) {
 		// console.log(index);
 	}
 	div.addEventListener("click", deleteFromStorage);
+}
+
+function showDetails(taskDetails, taskObj) {
+	taskDetails.addEventListener("click", () => {
+		// newTaskModal();
+		const taskArray = Array.from(
+			document.querySelectorAll(".listContainer__listItem")
+		);
+		taskArray.forEach((item) => (item.style.pointerEvents = "none"));
+		list.style.opacity = "0.7";
+		taskTitle.readOnly = true;
+		taskDesc.readOnly = true;
+		taskDue.readOnly = true;
+		// priorityRadios.forEach((radio) => {
+		// 	radio.disabled = true;
+		// });
+
+		taskTitle.value = taskObj.title;
+		taskDesc.value = taskObj.description;
+		taskDue.value = taskObj.dueDate;
+		priorityRadios.forEach((radio) => {
+			if (radio.value === taskObj.priority) radio.checked = true;
+			else radio.disabled = true;
+		});
+
+		document.getElementById("createTaskBtn").style.display = "none";
+		sideBar.style.pointerEvents = "none";
+		taskModal.style.display = "flex";
+		// document.addEventListener("click", closeWindow);
+		document.addEventListener("click", closeWindow);
+	});
 }
 
 function domFactory(item, index) {
@@ -93,50 +129,63 @@ function domFactory(item, index) {
 	list.append(divItem);
 
 	// Adds delete task Functionality
-	checkTaskComplete();
+	// checkTaskComplete();
 	deleteTasks(delImg);
 	// const domIndex = Array.from(list.children);
 	// console.log(domIndex);
+
+	// task Details
+	// console.log(document.querySelectorAll(".taskDetails"));
+	showDetails(taskDetails, storage.inbox[index]);
 }
 
 function resetScreen() {
 	list.style.opacity = "1";
-	document.getElementById("taskTitle").value = "";
-	document.getElementById("taskDescription").value = "";
-	document.getElementById("taskDueDate").value = "";
-	document.getElementsByName("taskPriority").forEach((radio) => {
+	taskTitle.readOnly = false;
+	taskTitle.value = "";
+	taskDesc.readOnly = false;
+	taskDesc.value = "";
+	taskDue.readOnly = false;
+	taskDue.value = "";
+	priorityRadios.forEach((radio) => {
+		radio.disabled = false;
+	});
+	priorityRadios.forEach((radio) => {
 		radio.checked = false;
 	});
 	list.style.pointerEvents = "auto";
 	sideBar.style.pointerEvents = "auto";
 	taskModal.style.display = "none";
+	document.getElementById("createTaskBtn").style.display = "block";
+
+	const taskArray = Array.from(
+		document.querySelectorAll(".listContainer__listItem")
+	);
+	taskArray.forEach((item) => (item.style.pointerEvents = "auto"));
 }
 
 function addToArray(e) {
 	e.preventDefault();
-	const taskTitle = document.getElementById("taskTitle").value;
-	const taskDesc = document.getElementById("taskDescription").value;
-	const taskDueDate = document.getElementById("taskDueDate").value;
+	const title = taskTitle.value;
+	const desc = taskDesc.value;
+	const taskDueDate = taskDue.value;
 	// const formattedDate = format(taskDueDate, 'MMMM dd, yyyy')
 	// const taskPriority = document.querySelector(
 	// 	'input[name="taskPriority"]:checked'
 	// ).value;
 	let taskPriority = "";
-	document.getElementsByName("taskPriority").forEach((radio) => {
+	priorityRadios.forEach((radio) => {
 		if (radio.checked) taskPriority = radio.value;
 	});
 
 	const isEmpty =
-		taskTitle !== "" &&
-		taskDesc !== "" &&
-		taskDueDate !== "" &&
-		taskPriority !== "";
+		title !== "" && desc !== "" && taskDueDate !== "" && taskPriority !== "";
 
 	if (isEmpty) {
 		const taskItem = new TaskCreator(
-			taskTitle,
+			title,
 			currentTab,
-			taskDesc,
+			desc,
 			taskDueDate,
 			taskPriority
 		);
@@ -150,8 +199,20 @@ function addToArray(e) {
 }
 
 function closeWindow(e) {
+	let clickDetail = false;
+	document.querySelectorAll(".taskDetails").forEach((item) => {
+		if (item.contains(e.target)) clickDetail = true;
+		// item.contains(e.target);
+	});
 	const outsideClick =
-		!taskModal.contains(e.target) && !addTaskBtn.contains(e.target);
+		!taskModal.contains(e.target) &&
+		!addTaskBtn.contains(e.target) &&
+		!clickDetail;
+
+	// const condition = document
+	// 	.querySelectorAll(".taskDetails")
+	// 	.forEach((item) => item.contains(e.target));
+	// console.log(condition);
 	if (outsideClick) {
 		resetScreen();
 		document.removeEventListener("click", closeWindow);

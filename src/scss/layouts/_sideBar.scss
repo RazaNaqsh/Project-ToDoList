@@ -11,6 +11,12 @@
 	padding: 1rem 1rem 0 1rem;
 	animation: slide-in 450ms ease-in-out 1 normal;
 
+	@media (max-width: 1160px) {
+		gap: 0.5rem;
+		// padding: 0.3rem;
+		font-size: 0.75rem;
+	}
+
 	@keyframes slide-in {
 		0% {
 			transform: translateX(-500px);

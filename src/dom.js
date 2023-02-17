@@ -148,7 +148,7 @@ function domFactory(item, index) {
 
 	checkTaskComplete();
 
-	divItem.append(inputCheck, para, taskDetails, dateContainer, delImg, editImg);
+	divItem.append(inputCheck, para, taskDetails, dateContainer, editImg, delImg);
 	list.append(divItem);
 
 	// Adds delete task Functionality

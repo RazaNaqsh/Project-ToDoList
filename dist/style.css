@@ -105,6 +105,12 @@ button:active {
   padding: 1rem 1rem 0 1rem;
   animation: slide-in 450ms ease-in-out 1 normal;
 }
+@media (max-width: 1160px) {
+  .sideBar {
+    gap: 0.5rem;
+    font-size: 0.75rem;
+  }
+}
 @keyframes slide-in {
   0% {
     transform: translateX(-500px);
@@ -196,20 +202,29 @@ button:active {
 }
 .listContainer__lists {
   padding: 1rem 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
   transition: all 150ms ease-in-out;
 }
 .listContainer__listItem {
   position: relative;
   background-color: hsl(235deg, 21%, 11%);
-  display: flex;
-  align-items: baseline;
-  padding: 1.2rem;
-  margin-top: 0.5rem;
-  max-height: 6vh;
-  text-overflow: ellipsis;
-  gap: 2rem;
+  display: grid;
+  grid-template-columns: 0.3fr 4fr 0.5fr 1.5fr 0.5fr 0.5fr;
+  align-items: center;
+  padding: 0.7rem;
+  gap: 1rem;
+  border-top-left-radius: 2px;
+  border-bottom-left-radius: 4px;
   transition: all 150ms ease-out;
   animation: slide-left 450ms ease-in-out 1 normal;
+}
+@media (max-width: 1160px) {
+  .listContainer__listItem {
+    padding: 0.3rem;
+    font-size: 0.7rem;
+  }
 }
 @keyframes slide-left {
   0% {
@@ -228,11 +243,12 @@ button:active {
   cursor: pointer;
 }
 .listContainer__listItem p {
+  justify-self: start;
   max-width: 60%;
 }
 .listContainer__listItem .editIcon, .listContainer__listItem .delIcon, .listContainer__listItem .taskDetails {
-  position: absolute;
   cursor: pointer;
+  font-size: inherit;
   transition: all 150ms ease-out;
 }
 .listContainer__listItem .editIcon:hover, .listContainer__listItem .delIcon:hover, .listContainer__listItem .taskDetails:hover {
@@ -240,24 +256,18 @@ button:active {
 }
 .listContainer__listItem .editIcon {
   height: 25px;
-  top: 0.85rem;
-  right: 4rem;
+  justify-self: end;
 }
 .listContainer__listItem .delIcon {
   height: 25px;
-  right: 1rem;
-  top: 0.85rem;
+  justify-self: center;
 }
 .listContainer__listItem .dateContainer {
-  position: absolute;
-  right: 8rem;
-  top: 0.8rem;
-  width: -moz-fit-content;
-  width: fit-content;
+  justify-self: center;
   padding: 0.5rem;
 }
 .listContainer__listItem .dateContainer p {
-  font-size: 0.9rem;
+  font-size: inherit;
   max-width: 7rem;
 }
 .listContainer__listItem .taskDetails {
@@ -291,7 +301,7 @@ button:active {
   display: none;
   flex-direction: column;
   background: hsl(235deg, 21%, 11%);
-  max-height: 45vh;
+  max-height: 50vh;
   width: 30vw;
   padding: 1rem;
   box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
@@ -306,8 +316,14 @@ button:active {
   align-items: center;
   gap: 0.3rem;
 }
+@media (max-width: 1450px) {
+  .listContainer__createTaskModal {
+    left: 9rem;
+  }
+}
 .listContainer__createProjectModal {
   position: absolute;
+  margin-inline: auto;
   display: none;
   flex-direction: column;
   background: hsl(235deg, 21%, 11%);
@@ -318,6 +334,11 @@ button:active {
   left: 17.5rem;
   z-index: 1;
   animation: pop-up 200ms ease-in-out 1 normal;
+}
+@media (max-width: 1450px) {
+  .listContainer__createProjectModal {
+    left: 12rem;
+  }
 }
 @keyframes pop-up {
   0% {

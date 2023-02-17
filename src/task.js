@@ -1,9 +1,9 @@
-// import { format } from "date-fns";
+// import { format } from "date-fns";clearTas
 import checkTaskComplete from "./completeTask";
 import storage from "./storage";
 // import deleteImage from "./icons/delete-forever.svg";
 // import editImage from "./icons/note-edit.svg";
-import taskFunctions from "./task";
+// import taskFunctions from "./task";
 import dom from "./dom";
 
 class TaskCreator {
@@ -35,12 +35,10 @@ function deleteTasks(div) {
 
 		storage.inbox.splice(index, 1);
 
-		taskFunctions.clearTaskScreen();
-		if (currentTab === "Inbox") taskFunctions.displayToDom(storage.inbox);
+		dom.clearTaskScreen();
+		if (currentTab === "Inbox") dom.displayToDom(storage.inbox);
 		else
-			taskFunctions.displayToDom(
-				storage.inbox.filter((item) => item.tab === currentTab)
-			);
+			dom.displayToDom(storage.inbox.filter((item) => item.tab === currentTab));
 		// console.log(domEleToRemove);
 		// console.log(storage.inbox);
 		// console.log(index);
@@ -78,22 +76,22 @@ function deleteTasks(div) {
 // 	taskArray.forEach((item) => (item.style.pointerEvents = "auto"));
 // }
 
-function closeWindow(e) {
-	let clickDetail = false;
-	document.querySelectorAll(".listContainer__listItem").forEach((item) => {
-		if (item.contains(e.target)) clickDetail = true;
-		// item.contains(e.target);
-	});
-	const outsideClick =
-		!taskModal.contains(e.target) &&
-		!addTaskBtn.contains(e.target) &&
-		!clickDetail;
+// function closeTaskModal(e) {
+// 	let clickDetail = false;
+// 	document.querySelectorAll(".listContainer__listItem").forEach((item) => {
+// 		if (item.contains(e.target)) clickDetail = true;
+// 		// item.contains(e.target);
+// 	});
+// 	const outsideClick =
+// 		!taskModal.contains(e.target) &&
+// 		!addTaskBtn.contains(e.target) &&
+// 		!clickDetail;
 
-	if (outsideClick) {
-		dom.resetScreen();
-		document.removeEventListener("click", closeWindow);
-	}
-}
+// 	if (outsideClick) {
+// 		dom.resetScreen();
+// 		document.removeEventListener("click", closeTaskModal);
+// 	}
+// }
 
 // function detailEditModal() {
 // 	const taskArray = Array.from(
@@ -145,12 +143,10 @@ function editTask(editBtn, taskObject) {
 		});
 		// console.log(storage.inbox);
 
-		taskFunctions.clearTaskScreen();
-		if (currentTab === "Inbox") taskFunctions.displayToDom(storage.inbox);
+		dom.clearTaskScreen();
+		if (currentTab === "Inbox") dom.displayToDom(storage.inbox);
 		else {
-			taskFunctions.displayToDom(
-				storage.inbox.filter((item) => item.tab === currentTab)
-			);
+			dom.displayToDom(storage.inbox.filter((item) => item.tab === currentTab));
 		}
 		checkTaskComplete();
 		editTaskBtn.removeEventListener("click", updateTaskDetails);
@@ -158,7 +154,7 @@ function editTask(editBtn, taskObject) {
 	}
 
 	editBtn.addEventListener("click", () => {
-		detailEditModal();
+		dom.detailEditModal();
 		editTaskBtn.style.display = "inline";
 		// console.log(taskObj.dueDate);
 
@@ -292,32 +288,32 @@ export default (function task() {
 	const create = () => addTaskBtn.addEventListener("click", createTask);
 
 	//  for dom
-	function displayToDom(storageArray) {
-		storageArray.forEach((item) => {
-			// localStorage.setItem(item, storage.inbox.indexOf(item));
-			// domFactory(JSON.parse(localStorage.getItem()))
-			dom.domFactory(item, storage.inbox.indexOf(item));
-		});
-	}
+	// function displayToDom(storageArray) {
+	// 	storageArray.forEach((item) => {
+	// 		// localStorage.setItem(item, storage.inbox.indexOf(item));
+	// 		// domFactory(JSON.parse(localStorage.getItem()))
+	// 		dom.domFactory(item, storage.inbox.indexOf(item));
+	// 	});
+	// }
 
 	// for dom
-	const clearTaskScreen = () => {
-		let child = list.lastElementChild;
+	// const clearTaskScreen = () => {
+	// 	let child = list.lastElementChild;
 
-		while (child) {
-			list.removeChild(child);
-			child = list.lastElementChild;
-		}
-	};
+	// 	while (child) {
+	// 		list.removeChild(child);
+	// 		child = list.lastElementChild;
+	// 	}
+	// };
 
 	return {
 		create,
-		displayToDom,
-		clearTaskScreen,
+		// displayToDom,
+		// clearTaskScreen,
 		current,
 		showDetails,
 		editTask,
 		deleteTasks,
-		closeWindow,
+		// closeWindow,
 	};
 })();

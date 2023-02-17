@@ -1,4 +1,5 @@
 import taskComplete from "./completeTask";
+import dom from "./dom";
 import storage from "./storage";
 import task from "./task";
 
@@ -11,9 +12,9 @@ function makeActive() {
 }
 export default function defaultTab() {
 	makeActive();
-	task.clearTaskScreen();
+	dom.clearTaskScreen();
 	task.current("Inbox");
 	task.create();
-	task.displayToDom(storage.inbox);
+	dom.displayToDom(storage.inbox);
 	taskComplete();
 }

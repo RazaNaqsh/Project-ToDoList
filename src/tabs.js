@@ -3,6 +3,7 @@ import task from "./task";
 import storage from "./storage";
 import taskComplete from "./completeTask";
 import deleteImage from "./icons/delete-forever.svg";
+import dom from "./dom";
 
 const projectArray = ["Family", "Personal", "Secret"];
 
@@ -27,12 +28,12 @@ function addLoadEvents(project, projectItem, delImg) {
 		const outsideDel = project.contains(e.target) && !delImg.contains(e.target);
 		if (outsideDel) {
 			task.current(projectItem);
-			task.clearTaskScreen();
+			dom.clearTaskScreen();
 			task.create();
 			const projectPersonalArray = storage.inbox.filter(
 				(item) => item.tab === projectItem
 			);
-			task.displayToDom(projectPersonalArray);
+			dom.displayToDom(projectPersonalArray);
 			taskComplete();
 			makeProjectActive(project);
 		}

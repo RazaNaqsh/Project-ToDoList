@@ -18,10 +18,10 @@ class TaskCreator {
 }
 let currentTab;
 
-const taskModal = document.getElementById("createTaskModal");
+// const taskModal = document.getElementById("createTaskModal");
 const addTaskBtn = document.getElementById("addTask");
-const list = document.querySelector("#lists");
-const sideBar = document.querySelector(".sideBar");
+// const list = document.querySelector("#lists");
+// const sideBar = document.querySelector(".sideBar");
 const editTaskBtn = document.getElementById("editTaskBtn");
 
 const taskTitle = document.getElementById("taskTitle");

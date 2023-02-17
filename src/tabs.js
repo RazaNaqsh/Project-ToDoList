@@ -21,6 +21,7 @@ function makeProjectActive(project) {
 	// console.log(Array.from(allProjects));
 	project.classList.add("active");
 }
+
 function addLoadEvents(project, projectItem, delImg) {
 	project.addEventListener("click", (e) => {
 		const outsideDel = project.contains(e.target) && !delImg.contains(e.target);
@@ -37,6 +38,7 @@ function addLoadEvents(project, projectItem, delImg) {
 		}
 	});
 }
+
 function addDeleteEvent(delImg) {
 	delImg.addEventListener("click", (e) => {
 		// console.log("konnichiwa");

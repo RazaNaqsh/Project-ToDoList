@@ -12,12 +12,13 @@ class TaskCreator {
 		this.status = "Incomplete";
 	}
 }
+
 let currentTab;
 
 // const taskModal = document.getElementById("createTaskModal");
 const addTaskBtn = document.getElementById("addTask");
-// const list = document.querySelector("#lists");
-// const sideBar = document.querySelector(".sideBar");
+const list = document.querySelector("#lists");
+const sideBar = document.querySelector(".sideBar");
 const editTaskBtn = document.getElementById("editTaskBtn");
 
 const taskTitle = document.getElementById("taskTitle");
@@ -40,24 +41,6 @@ function deleteTasks(div) {
 		// console.log(index);
 	}
 	div.addEventListener("click", deleteFromStorage);
-}
-
-function showDetails(taskDetails, taskObj) {
-	taskDetails.addEventListener("click", () => {
-		dom.detailEditModal();
-
-		taskTitle.readOnly = true;
-		taskDesc.readOnly = true;
-		taskDue.readOnly = true;
-
-		taskTitle.value = taskObj.title;
-		taskDesc.value = taskObj.description;
-		taskDue.value = taskObj.dueDate;
-		priorityRadios.forEach((radio) => {
-			if (radio.value === taskObj.priority) radio.checked = true;
-			else radio.disabled = true;
-		});
-	});
 }
 
 function editTask(editBtn, taskObject) {
@@ -124,7 +107,7 @@ function addToArray(e) {
 		// console.log(storage.inbox);
 		dom.resetScreen();
 		// window.localStorage.setItem("task", JSON.stringify(taskItem));
-		// this is dom task
+
 		dom.domFactory(taskItem, storage.inbox.indexOf(taskItem));
 
 		checkTaskComplete();
@@ -141,6 +124,13 @@ function createTask() {
 	submitTaskData();
 }
 
+function makeProjectActive(project) {
+	const allProjects = document.querySelectorAll(".active");
+	allProjects.forEach((item) => item.classList.remove("active"));
+	// console.log(Array.from(allProjects));
+	project.classList.add("active");
+}
+
 export default (function task() {
 	const current = (tab) => {
 		currentTab = tab;
@@ -152,11 +142,11 @@ export default (function task() {
 	const create = () => addTaskBtn.addEventListener("click", createTask);
 
 	return {
+		// for tasks
 		create,
-
 		current,
-		showDetails,
 		editTask,
 		deleteTasks,
+		makeProjectActive,
 	};
 })();

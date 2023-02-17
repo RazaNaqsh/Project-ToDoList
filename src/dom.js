@@ -5,6 +5,8 @@ import editImage from "./icons/note-edit.svg";
 import checkTaskComplete from "./completeTask";
 import storage from "./storage";
 
+// task dom code
+
 const taskModal = document.getElementById("createTaskModal");
 const addTaskBtn = document.getElementById("addTask");
 const list = document.querySelector("#lists");
@@ -16,9 +18,7 @@ const taskDesc = document.getElementById("taskDescription");
 const taskDue = document.getElementById("taskDueDate");
 const priorityRadios = document.getElementsByName("taskPriority");
 
-function resetScreen() {
-	list.style.opacity = "1";
-
+function resetForms() {
 	taskTitle.readOnly = false;
 	taskTitle.value = "";
 
@@ -33,10 +33,16 @@ function resetScreen() {
 		radio.disabled = false;
 		radio.checked = false;
 	});
+}
+
+function resetScreen() {
+	list.style.opacity = "1";
+
+	resetForms();
 
 	taskModal.style.display = "none";
-	document.getElementById("createTaskBtn").style.display = "inline";
 	editTaskBtn.style.display = "none";
+	document.getElementById("createTaskBtn").style.display = "inline";
 
 	list.style.pointerEvents = "auto";
 	sideBar.style.pointerEvents = "auto";
@@ -73,15 +79,46 @@ function newTaskModal() {
 	// console.log(document.getElementById("taskTitle"));
 }
 
+function detailEditModal() {
+	const taskArray = Array.from(
+		document.querySelectorAll(".listContainer__listItem")
+	);
+	taskArray.forEach((item) => (item.style.pointerEvents = "none"));
+	document.getElementById("createTaskBtn").style.display = "none";
+
+	sideBar.style.pointerEvents = "none";
+	list.style.opacity = "0.7";
+	taskModal.style.display = "flex";
+	document.addEventListener("click", closeTaskModal);
+}
+
+function showDetails(taskDetails, taskObj) {
+	taskDetails.addEventListener("click", () => {
+		detailEditModal();
+
+		taskTitle.readOnly = true;
+		taskDesc.readOnly = true;
+		taskDue.readOnly = true;
+
+		taskTitle.value = taskObj.title;
+		taskDesc.value = taskObj.description;
+		taskDue.value = taskObj.dueDate;
+		priorityRadios.forEach((radio) => {
+			if (radio.value === taskObj.priority) radio.checked = true;
+			else radio.disabled = true;
+		});
+	});
+}
+
 function domFactory(item, index) {
 	const divItem = document.createElement("div");
 	divItem.classList.add("listContainer__listItem");
 	divItem.setAttribute("data-index", `${index}`);
 
-	if (item.priority === "High") divItem.style.borderLeft = "8px solid #ef4444";
+	if (item.priority === "High") divItem.style.borderLeft = "8px solid #dc2626";
 	if (item.priority === "Medium")
-		divItem.style.borderLeft = "8px solid #fdba74";
-	if (item.priority === "Low") divItem.style.borderLeft = "8px solid #4ade80";
+		divItem.style.borderLeft = "8px solid #fef08a";
+	if (item.priority === "Low") divItem.style.borderLeft = "8px solid #22c55e";
 
 	const inputCheck = document.createElement("input");
 	inputCheck.type = "checkbox";
@@ -110,6 +147,7 @@ function domFactory(item, index) {
 	editImg.classList.add("editIcon");
 
 	checkTaskComplete();
+
 	divItem.append(inputCheck, para, taskDetails, dateContainer, delImg, editImg);
 	list.append(divItem);
 
@@ -118,33 +156,58 @@ function domFactory(item, index) {
 
 	// task Details
 	// console.log(document.querySelectorAll(".taskDetails"));
-	task.showDetails(taskDetails, storage.inbox[index]);
+	showDetails(taskDetails, storage.inbox[index]);
 
 	// Edit task
 	task.editTask(editImg, storage.inbox[index]);
 }
 
-function detailEditModal() {
-	const taskArray = Array.from(
-		document.querySelectorAll(".listContainer__listItem")
-	);
-	taskArray.forEach((item) => (item.style.pointerEvents = "none"));
-	document.getElementById("createTaskBtn").style.display = "none";
+// tabs dom manipulations
 
-	sideBar.style.pointerEvents = "none";
-	list.style.opacity = "0.7";
-	taskModal.style.display = "flex";
-	document.addEventListener("click", closeTaskModal);
+const projectModal = document.getElementById("createProjectModal");
+const newProjectBtn = document.getElementById("newProject");
+
+function resetProjectScreen() {
+	list.style.opacity = "1";
+	document.getElementById("projectTitle").value = "";
+	list.style.pointerEvents = "auto";
+	sideBar.style.pointerEvents = "auto";
+	projectModal.style.display = "none";
 }
 
-function displayToDom(storageArray) {
-	storageArray.forEach((item) => {
-		// localStorage.setItem(item, storage.inbox.indexOf(item));
-		// domFactory(JSON.parse(localStorage.getItem()))
-		domFactory(item, storage.inbox.indexOf(item));
-	});
+function closeProjectModal(e) {
+	const outsideClick =
+		!projectModal.contains(e.target) && !newProjectBtn.contains(e.target);
+	if (outsideClick) {
+		resetProjectScreen();
+		document.removeEventListener("click", closeProjectModal);
+	}
+}
+
+function revealProjectModal() {
+	list.style.opacity = "0.7";
+	list.style.pointerEvents = "none";
+	sideBar.style.pointerEvents = "none";
+	projectModal.style.display = "flex";
+	document.getElementById("projectTitle").focus();
+	document.addEventListener("click", closeProjectModal);
+}
+
+function makeProjectActive(project) {
+	const allProjects = document.querySelectorAll(".active");
+	allProjects.forEach((item) => item.classList.remove("active"));
+	// console.log(Array.from(allProjects));
+	project.classList.add("active");
 }
 export default (function dom() {
+	function displayToDom(storageArray) {
+		storageArray.forEach((item) => {
+			// localStorage.setItem(item, storage.inbox.indexOf(item));
+			// domFactory(JSON.parse(localStorage.getItem()))
+			domFactory(item, storage.inbox.indexOf(item));
+		});
+	}
+
 	const clearTaskScreen = () => {
 		let child = list.lastElementChild;
 
@@ -155,11 +218,17 @@ export default (function dom() {
 	};
 
 	return {
+		// for Task
 		newTaskModal,
 		resetScreen,
 		domFactory,
 		detailEditModal,
 		clearTaskScreen,
 		displayToDom,
+
+		// for tabs
+		revealProjectModal,
+		resetProjectScreen,
+		makeProjectActive,
 	};
 })();

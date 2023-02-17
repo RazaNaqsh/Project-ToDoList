@@ -1,7 +1,7 @@
 import defaultTab from "./defaultTab";
 import task from "./task";
 import storage from "./storage";
-import taskComplete from "./completeTask";
+import checkCompleteTask from "./completeTask";
 import deleteImage from "./icons/delete-forever.svg";
 import dom from "./dom";
 
@@ -9,19 +9,13 @@ const projectArray = ["Family", "Personal", "Secret"];
 
 const projectTab = document.getElementById("projects");
 
-const sideBar = document.querySelector(".sideBar");
-const list = document.querySelector("#lists");
+// const sideBar = document.querySelector(".sideBar");
+// const list = document.querySelector("#lists");
 
 const newProjectBtn = document.getElementById("newProject");
-const projectModal = document.getElementById("createProjectModal");
+// const projectModal = document.getElementById("createProjectModal");
 
 //  display project section and setup
-function makeProjectActive(project) {
-	const allProjects = document.querySelectorAll(".active");
-	allProjects.forEach((item) => item.classList.remove("active"));
-	// console.log(Array.from(allProjects));
-	project.classList.add("active");
-}
 
 function addLoadEvents(project, projectItem, delImg) {
 	project.addEventListener("click", (e) => {
@@ -34,8 +28,8 @@ function addLoadEvents(project, projectItem, delImg) {
 				(item) => item.tab === projectItem
 			);
 			dom.displayToDom(projectPersonalArray);
-			taskComplete();
-			makeProjectActive(project);
+			checkCompleteTask();
+			dom.makeProjectActive(project);
 		}
 	});
 }
@@ -80,31 +74,6 @@ function displayProjects() {
 }
 
 //  Create Project section
-function resetProjectScreen() {
-	list.style.opacity = "1";
-	document.getElementById("projectTitle").value = "";
-	list.style.pointerEvents = "auto";
-	sideBar.style.pointerEvents = "auto";
-	projectModal.style.display = "none";
-}
-
-function closeWindow(e) {
-	const outsideClick =
-		!projectModal.contains(e.target) && !newProjectBtn.contains(e.target);
-	if (outsideClick) {
-		resetProjectScreen();
-		document.removeEventListener("click", closeWindow);
-	}
-}
-
-function createProjectModal() {
-	list.style.opacity = "0.7";
-	list.style.pointerEvents = "none";
-	sideBar.style.pointerEvents = "none";
-	projectModal.style.display = "flex";
-	document.getElementById("projectTitle").focus();
-	document.addEventListener("click", closeWindow);
-}
 
 function addToArray(e) {
 	e.preventDefault();
@@ -113,10 +82,10 @@ function addToArray(e) {
 	if (!isEmpty) {
 		const projectItem = projectTitle;
 		projectArray.push(projectItem);
-		resetProjectScreen();
+		dom.resetProjectScreen();
 		projectFactory(projectItem, storage.inbox.indexOf(projectItem));
 		console.log(storage.inbox);
-		taskComplete();
+		checkCompleteTask();
 	}
 }
 function submitProjectData() {
@@ -124,7 +93,7 @@ function submitProjectData() {
 	createProjectBtn.addEventListener("click", addToArray);
 }
 function createNewProject() {
-	createProjectModal();
+	dom.revealProjectModal();
 	submitProjectData();
 }
 

@@ -1,6 +1,7 @@
 import taskComplete from "./completeTask";
 import dom from "./dom";
 import storage from "./storage";
+// import tabs from "./tabs";
 import task from "./task";
 
 function makeActive() {
@@ -10,6 +11,7 @@ function makeActive() {
 	// console.log(Array.from(allProjects));
 	inboxTab.classList.add("active");
 }
+
 export default function defaultTab() {
 	makeActive();
 	dom.clearTaskScreen();

@@ -1,11 +1,11 @@
 import storage from "./storage";
 
 function taskStatusHandler(e) {
-	const siblingPara = e.target.nextSibling;
+	// const siblingPara = e.target.nextSibling;
 	const parentDiv = e.target.parentElement;
 
 	const taskIndex = e.target.parentElement.getAttribute("data-index");
-	console.log(taskIndex);
+	// console.log(taskIndex);
 	// storage.inbox[taskIndex].status === "Incomplete"
 	if (e.target.checked === true) {
 		storage.inbox[taskIndex].status = "Complete";
@@ -17,7 +17,7 @@ function taskStatusHandler(e) {
 		parentDiv.style.opacity = 1;
 	}
 
-	console.log(storage.inbox);
+	// console.log(storage.inbox);
 
 	// const isCompleted = siblingPara.style.textDecoration === "line-through";
 
@@ -35,7 +35,8 @@ function taskCompleteCheck() {
 		document.querySelectorAll(".listContainer__listItem")
 	);
 	// console.log(listItems);
-	listItems.forEach((task) => {
+	listItems.forEach((taskItem) => {
+		const task = taskItem;
 		const taskIndex = task.getAttribute("data-index");
 		// console.log(storage.inbox[taskIndex]);
 		if (storage.inbox[taskIndex].status === "Complete") {

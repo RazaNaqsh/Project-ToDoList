@@ -25,6 +25,7 @@ const taskModal = document.getElementById("createTaskModal");
 const addTaskBtn = document.getElementById("addTask");
 const list = document.querySelector("#lists");
 const sideBar = document.querySelector(".sideBar");
+const editTaskBtn = document.getElementById("editTaskBtn");
 
 const taskTitle = document.getElementById("taskTitle");
 const taskDesc = document.getElementById("taskDescription");
@@ -56,14 +57,71 @@ function deleteTasks(div) {
 	div.addEventListener("click", deleteFromStorage);
 }
 
+function resetScreen() {
+	list.style.opacity = "1";
+
+	taskTitle.readOnly = false;
+	taskTitle.value = "";
+
+	taskDesc.readOnly = false;
+	taskDesc.value = "";
+
+	taskDue.readOnly = false;
+	taskDue.value = "";
+
+	priorityRadios.forEach((radios) => {
+		const radio = radios;
+		radio.disabled = false;
+		radio.checked = false;
+	});
+
+	taskModal.style.display = "none";
+	document.getElementById("createTaskBtn").style.display = "inline";
+	editTaskBtn.style.display = "none";
+
+	list.style.pointerEvents = "auto";
+	sideBar.style.pointerEvents = "auto";
+	const taskArray = Array.from(
+		document.querySelectorAll(".listContainer__listItem")
+	);
+	taskArray.forEach((item) => (item.style.pointerEvents = "auto"));
+}
+
+function closeWindow(e) {
+	let clickDetail = false;
+	document.querySelectorAll(".listContainer__listItem").forEach((item) => {
+		if (item.contains(e.target)) clickDetail = true;
+		// item.contains(e.target);
+	});
+	const outsideClick =
+		!taskModal.contains(e.target) &&
+		!addTaskBtn.contains(e.target) &&
+		!clickDetail;
+
+	if (outsideClick) {
+		resetScreen();
+		document.removeEventListener("click", closeWindow);
+	}
+}
+
+function detailEditModal() {
+	const taskArray = Array.from(
+		document.querySelectorAll(".listContainer__listItem")
+	);
+	taskArray.forEach((item) => (item.style.pointerEvents = "none"));
+	document.getElementById("createTaskBtn").style.display = "none";
+
+	sideBar.style.pointerEvents = "none";
+	list.style.opacity = "0.7";
+	taskModal.style.display = "flex";
+	document.addEventListener("click", closeWindow);
+}
+
 function showDetails(taskDetails, taskObj) {
 	taskDetails.addEventListener("click", () => {
 		// newTaskModal();
-		const taskArray = Array.from(
-			document.querySelectorAll(".listContainer__listItem")
-		);
-		taskArray.forEach((item) => (item.style.pointerEvents = "none"));
-		list.style.opacity = "0.7";
+		detailEditModal();
+
 		taskTitle.readOnly = true;
 		taskDesc.readOnly = true;
 		taskDue.readOnly = true;
@@ -79,11 +137,46 @@ function showDetails(taskDetails, taskObj) {
 			else radio.disabled = true;
 		});
 
-		document.getElementById("createTaskBtn").style.display = "none";
-		sideBar.style.pointerEvents = "none";
-		taskModal.style.display = "flex";
 		// document.addEventListener("click", closeWindow);
-		document.addEventListener("click", closeWindow);
+	});
+}
+
+function editTask(editBtn, taskObject) {
+	const taskObj = taskObject;
+	function updateTaskDetails(e) {
+		e.preventDefault();
+
+		taskObj.title = document.getElementById("taskTitle").value;
+		taskObj.description = document.getElementById("taskDescription").value;
+		taskObj.dueDate = document.getElementById("taskDueDate").value;
+		priorityRadios.forEach((radio) => {
+			if (radio.checked) taskObj.priority = radio.value;
+		});
+		// console.log(storage.inbox);
+
+		taskFunctions.clearTaskScreen();
+		if (currentTab === "Inbox") taskFunctions.displayToDom(storage.inbox);
+		else {
+			taskFunctions.displayToDom(
+				storage.inbox.filter((item) => item.tab === currentTab)
+			);
+		}
+		checkTaskComplete();
+		editTaskBtn.removeEventListener("click", updateTaskDetails);
+		resetScreen();
+	}
+
+	editBtn.addEventListener("click", () => {
+		detailEditModal();
+		editTaskBtn.style.display = "inline";
+		// console.log(taskObj.dueDate);
+		taskTitle.value = taskObj.title;
+		taskDesc.value = taskObj.description;
+		taskDue.value = taskObj.dueDate;
+		priorityRadios.forEach((radio) => {
+			if (radio.value === taskObj.priority) radio.checked = true;
+		});
+		editTaskBtn.addEventListener("click", updateTaskDetails);
 	});
 }
 
@@ -122,46 +215,20 @@ function domFactory(item, index) {
 	const editImg = new Image();
 	editImg.src = editImage;
 	editImg.classList.add("editIcon");
-	// deleteEle.textContent = "X";
-	divItem.append(inputCheck, para, taskDetails, dateContainer, delImg, editImg);
+
 	checkTaskComplete();
-	// deleteEle.append(delImg);
+	divItem.append(inputCheck, para, taskDetails, dateContainer, delImg, editImg);
 	list.append(divItem);
 
 	// Adds delete task Functionality
-	// checkTaskComplete();
 	deleteTasks(delImg);
-	// const domIndex = Array.from(list.children);
-	// console.log(domIndex);
 
 	// task Details
 	// console.log(document.querySelectorAll(".taskDetails"));
 	showDetails(taskDetails, storage.inbox[index]);
-}
 
-function resetScreen() {
-	list.style.opacity = "1";
-	taskTitle.readOnly = false;
-	taskTitle.value = "";
-	taskDesc.readOnly = false;
-	taskDesc.value = "";
-	taskDue.readOnly = false;
-	taskDue.value = "";
-	priorityRadios.forEach((radio) => {
-		radio.disabled = false;
-	});
-	priorityRadios.forEach((radio) => {
-		radio.checked = false;
-	});
-	list.style.pointerEvents = "auto";
-	sideBar.style.pointerEvents = "auto";
-	taskModal.style.display = "none";
-	document.getElementById("createTaskBtn").style.display = "block";
-
-	const taskArray = Array.from(
-		document.querySelectorAll(".listContainer__listItem")
-	);
-	taskArray.forEach((item) => (item.style.pointerEvents = "auto"));
+	// Edit task
+	editTask(editImg, storage.inbox[index]);
 }
 
 function addToArray(e) {
@@ -190,7 +257,7 @@ function addToArray(e) {
 			taskPriority
 		);
 		storage.inbox.push(taskItem);
-		console.log(storage.inbox);
+		// console.log(storage.inbox);
 		resetScreen();
 		domFactory(taskItem, storage.inbox.indexOf(taskItem));
 
@@ -198,26 +265,6 @@ function addToArray(e) {
 	}
 }
 
-function closeWindow(e) {
-	let clickDetail = false;
-	document.querySelectorAll(".taskDetails").forEach((item) => {
-		if (item.contains(e.target)) clickDetail = true;
-		// item.contains(e.target);
-	});
-	const outsideClick =
-		!taskModal.contains(e.target) &&
-		!addTaskBtn.contains(e.target) &&
-		!clickDetail;
-
-	// const condition = document
-	// 	.querySelectorAll(".taskDetails")
-	// 	.forEach((item) => item.contains(e.target));
-	// console.log(condition);
-	if (outsideClick) {
-		resetScreen();
-		document.removeEventListener("click", closeWindow);
-	}
-}
 function newTaskModal() {
 	list.style.opacity = "0.7";
 	list.style.pointerEvents = "none";
@@ -241,6 +288,7 @@ function createTask() {
 export default (function task() {
 	const current = (tab) => {
 		currentTab = tab;
+		document.getElementById("headerTitle").textContent = currentTab;
 		// console.log(currentTab);
 		return currentTab;
 	};
@@ -261,7 +309,6 @@ export default (function task() {
 		}
 	};
 
-	// displayToDom();
 	return {
 		create,
 		displayToDom,

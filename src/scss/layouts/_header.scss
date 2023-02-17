@@ -4,7 +4,19 @@
 	background: $CheckBackground;
 	grid-column: 2/3;
 	grid-row: 1/2;
+	display: flex;
 	animation: slide-down 450ms ease-in-out 1 normal;
+
+	&__title {
+		align-self: flex-end;
+		margin-left: 2rem;
+		margin-bottom: 1rem;
+		font-size: 2rem;
+		// letter-spacing: 1px;
+		font-weight: 700;
+		color: $LightGrayishBlueHover;
+		transition: all 250ms ease-in-out;
+	}
 	@keyframes slide-down {
 		0% {
 			transform: translateY(-500px);

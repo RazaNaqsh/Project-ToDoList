@@ -29,8 +29,13 @@
 		color: $LightGrayishBlueHover;
 	}
 	&__title {
+		background: $CheckBackground;
+		-webkit-text-fill-color: transparent;
+		-webkit-background-clip: text;
 		color: $LightGrayishBlueHover;
 		letter-spacing: 2px;
+		font-weight: 900;
+		font-size: 2rem;
 	}
 
 	&__upper {
@@ -39,10 +44,10 @@
 	}
 
 	&__tab {
-		padding: 0.85rem 0.3rem;
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
+		padding: 0.85rem 0.3rem;
 		padding-right: 1rem;
 		// border-radius: 5px;
 		cursor: pointer;
@@ -54,6 +59,10 @@
 		}
 		& .delIcon {
 			height: 25px;
+			transition: inherit;
+			&:hover {
+				opacity: 0.8;
+			}
 		}
 	}
 

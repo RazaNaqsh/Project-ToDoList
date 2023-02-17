@@ -1,9 +1,5 @@
-// import { format } from "date-fns";clearTas
 import checkTaskComplete from "./completeTask";
 import storage from "./storage";
-// import deleteImage from "./icons/delete-forever.svg";
-// import editImage from "./icons/note-edit.svg";
-// import taskFunctions from "./task";
 import dom from "./dom";
 
 class TaskCreator {
@@ -46,77 +42,13 @@ function deleteTasks(div) {
 	div.addEventListener("click", deleteFromStorage);
 }
 
-// function resetScreen() {
-// 	list.style.opacity = "1";
-
-// 	taskTitle.readOnly = false;
-// 	taskTitle.value = "";
-
-// 	taskDesc.readOnly = false;
-// 	taskDesc.value = "";
-
-// 	taskDue.readOnly = false;
-// 	taskDue.value = "";
-
-// 	priorityRadios.forEach((radios) => {
-// 		const radio = radios;
-// 		radio.disabled = false;
-// 		radio.checked = false;
-// 	});
-
-// 	taskModal.style.display = "none";
-// 	document.getElementById("createTaskBtn").style.display = "inline";
-// 	editTaskBtn.style.display = "none";
-
-// 	list.style.pointerEvents = "auto";
-// 	sideBar.style.pointerEvents = "auto";
-// 	const taskArray = Array.from(
-// 		document.querySelectorAll(".listContainer__listItem")
-// 	);
-// 	taskArray.forEach((item) => (item.style.pointerEvents = "auto"));
-// }
-
-// function closeTaskModal(e) {
-// 	let clickDetail = false;
-// 	document.querySelectorAll(".listContainer__listItem").forEach((item) => {
-// 		if (item.contains(e.target)) clickDetail = true;
-// 		// item.contains(e.target);
-// 	});
-// 	const outsideClick =
-// 		!taskModal.contains(e.target) &&
-// 		!addTaskBtn.contains(e.target) &&
-// 		!clickDetail;
-
-// 	if (outsideClick) {
-// 		dom.resetScreen();
-// 		document.removeEventListener("click", closeTaskModal);
-// 	}
-// }
-
-// function detailEditModal() {
-// 	const taskArray = Array.from(
-// 		document.querySelectorAll(".listContainer__listItem")
-// 	);
-// 	taskArray.forEach((item) => (item.style.pointerEvents = "none"));
-// 	document.getElementById("createTaskBtn").style.display = "none";
-
-// 	sideBar.style.pointerEvents = "none";
-// 	list.style.opacity = "0.7";
-// 	taskModal.style.display = "flex";
-// 	document.addEventListener("click", closeWindow);
-// }
-
 function showDetails(taskDetails, taskObj) {
 	taskDetails.addEventListener("click", () => {
-		// newTaskModal();
 		dom.detailEditModal();
 
 		taskTitle.readOnly = true;
 		taskDesc.readOnly = true;
 		taskDue.readOnly = true;
-		// priorityRadios.forEach((radio) => {
-		// 	radio.disabled = true;
-		// });
 
 		taskTitle.value = taskObj.title;
 		taskDesc.value = taskObj.description;
@@ -125,8 +57,6 @@ function showDetails(taskDetails, taskObj) {
 			if (radio.value === taskObj.priority) radio.checked = true;
 			else radio.disabled = true;
 		});
-
-		// document.addEventListener("click", closeWindow);
 	});
 }
 
@@ -168,67 +98,12 @@ function editTask(editBtn, taskObject) {
 	});
 }
 
-// this is complete dom task
-// function domFactory(item, index) {
-// 	const divItem = document.createElement("div");
-// 	divItem.classList.add("listContainer__listItem");
-// 	divItem.setAttribute("data-index", `${index}`);
-
-// 	if (item.priority === "High") divItem.style.borderLeft = "8px solid #ef4444";
-// 	if (item.priority === "Medium")
-// 		divItem.style.borderLeft = "8px solid #fdba74";
-// 	if (item.priority === "Low") divItem.style.borderLeft = "8px solid #4ade80";
-
-// 	const inputCheck = document.createElement("input");
-// 	inputCheck.type = "checkbox";
-// 	inputCheck.classList.add("taskCheckbox");
-
-// 	const para = document.createElement("p");
-// 	para.textContent = `${item.title}`;
-
-// 	const taskDetails = document.createElement("div");
-// 	taskDetails.classList.add("taskDetails");
-// 	taskDetails.textContent = "Details";
-
-// 	const dateContainer = document.createElement("div");
-// 	dateContainer.classList.add("dateContainer");
-// 	const date = document.createElement("p");
-// 	const formattedDate = format(new Date(item.dueDate), "MMM dd, yyyy");
-// 	date.textContent = `${formattedDate}`;
-// 	dateContainer.append(date);
-
-// 	const delImg = new Image();
-// 	delImg.src = deleteImage;
-// 	delImg.classList.add("delIcon");
-
-// 	const editImg = new Image();
-// 	editImg.src = editImage;
-// 	editImg.classList.add("editIcon");
-
-// 	checkTaskComplete();
-// 	divItem.append(inputCheck, para, taskDetails, dateContainer, delImg, editImg);
-// 	list.append(divItem);
-
-// 	// Adds delete task Functionality
-// 	deleteTasks(delImg);
-
-// 	// task Details
-// 	// console.log(document.querySelectorAll(".taskDetails"));
-// 	showDetails(taskDetails, storage.inbox[index]);
-
-// 	// Edit task
-// 	editTask(editImg, storage.inbox[index]);
-// }
-
 function addToArray(e) {
 	// e.preventDefault();
 	const title = taskTitle.value;
 	const desc = taskDesc.value;
 	const taskDueDate = taskDue.value;
-	// const formattedDate = format(taskDueDate, 'MMMM dd, yyyy')
-	// const taskPriority = document.querySelector(
-	// 	'input[name="taskPriority"]:checked'
-	// ).value;
+
 	let taskPriority = "";
 	priorityRadios.forEach((radio) => {
 		if (radio.checked) taskPriority = radio.value;
@@ -256,17 +131,6 @@ function addToArray(e) {
 	}
 }
 
-// for dom
-// function newTaskModal() {
-// 	list.style.opacity = "0.7";
-// 	list.style.pointerEvents = "none";
-// 	sideBar.style.pointerEvents = "none";
-// 	taskModal.style.display = "flex";
-// 	document.getElementById("taskTitle").focus();
-// 	document.addEventListener("click", closeWindow);
-// 	// console.log(document.getElementById("taskTitle"));
-// }
-
 function submitTaskData() {
 	const submitTaskBtn = document.getElementById("createTaskBtn");
 	submitTaskBtn.addEventListener("click", addToArray);
@@ -287,33 +151,12 @@ export default (function task() {
 
 	const create = () => addTaskBtn.addEventListener("click", createTask);
 
-	//  for dom
-	// function displayToDom(storageArray) {
-	// 	storageArray.forEach((item) => {
-	// 		// localStorage.setItem(item, storage.inbox.indexOf(item));
-	// 		// domFactory(JSON.parse(localStorage.getItem()))
-	// 		dom.domFactory(item, storage.inbox.indexOf(item));
-	// 	});
-	// }
-
-	// for dom
-	// const clearTaskScreen = () => {
-	// 	let child = list.lastElementChild;
-
-	// 	while (child) {
-	// 		list.removeChild(child);
-	// 		child = list.lastElementChild;
-	// 	}
-	// };
-
 	return {
 		create,
-		// displayToDom,
-		// clearTaskScreen,
+
 		current,
 		showDetails,
 		editTask,
 		deleteTasks,
-		// closeWindow,
 	};
 })();

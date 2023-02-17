@@ -204,6 +204,7 @@ export default (function dom() {
 		storageArray.forEach((item) => {
 			// localStorage.setItem(item, storage.inbox.indexOf(item));
 			// domFactory(JSON.parse(localStorage.getItem()))
+			localStorage.setItem(storage.inbox.indexOf(item), JSON.stringify(item));
 			domFactory(item, storage.inbox.indexOf(item));
 		});
 	}

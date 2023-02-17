@@ -6,6 +6,7 @@
 	grid-row: 1/2;
 	display: flex;
 	animation: slide-down 450ms ease-in-out 1 normal;
+	min-height: 17vh;
 
 	&__title {
 		align-self: flex-end;

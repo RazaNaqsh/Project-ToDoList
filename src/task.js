@@ -107,10 +107,10 @@ function addToArray(e) {
 		// console.log(storage.inbox);
 		dom.resetScreen();
 
-		// window.localStorage.setItem(
-		// 	JSON.stringify(storage.inbox.indexOf(taskItem)),
-		// 	JSON.stringify(taskItem)
-		// );
+		localStorage.setItem(
+			storage.inbox.indexOf(taskItem),
+			JSON.stringify(taskItem)
+		);
 
 		dom.domFactory(taskItem, storage.inbox.indexOf(taskItem));
 

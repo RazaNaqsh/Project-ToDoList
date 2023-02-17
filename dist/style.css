@@ -70,6 +70,7 @@ button:active {
   grid-row: 1/2;
   display: flex;
   animation: slide-down 450ms ease-in-out 1 normal;
+  min-height: 17vh;
 }
 .header__title {
   align-self: flex-end;
@@ -167,6 +168,20 @@ button:active {
   max-height: 15rem;
   overflow: auto;
   transition: all 200ms ease-in-out;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
+}
+.sideBar__project::-webkit-scrollbar {
+  width: 7px;
+}
+.sideBar__project::-webkit-scrollbar-track {
+  border-radius: 5px;
+  background: hsl(234deg, 39%, 85%);
+}
+.sideBar__project::-webkit-scrollbar-thumb {
+  background-color: hsl(235deg, 21%, 11%);
+  border-radius: 5px;
 }
 .sideBar__addProject {
   cursor: pointer;
@@ -185,6 +200,7 @@ button:active {
   background-color: hsl(235deg, 24%, 19%);
   grid-template-rows: 6fr 1fr;
   z-index: 0;
+  max-height: 66vh;
   animation: slide-up 450ms ease-in-out 1 normal;
 }
 @keyframes slide-up {
@@ -206,12 +222,25 @@ button:active {
   flex-direction: column;
   gap: 0.65rem;
   transition: all 150ms ease-in-out;
+  max-height: 65vh;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+.listContainer__lists::-webkit-scrollbar {
+  width: 7px;
+}
+.listContainer__lists::-webkit-scrollbar-track {
+  background: hsl(234deg, 39%, 85%);
+}
+.listContainer__lists::-webkit-scrollbar-thumb {
+  background-color: hsl(235deg, 21%, 11%);
+  border-radius: 5px;
 }
 .listContainer__listItem {
   position: relative;
   background-color: hsl(235deg, 21%, 11%);
   display: grid;
-  grid-template-columns: 0.3fr 4fr 0.5fr 1.5fr 0.5fr 0.5fr;
+  grid-template-columns: 0.3fr 4fr 0.5fr 1.6fr 0.5fr 0.5fr;
   align-items: center;
   padding: 0.7rem;
   gap: 1rem;

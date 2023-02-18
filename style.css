@@ -64,6 +64,13 @@ button:active {
   transform: scale(0.98);
 }
 
+.copyrightText {
+  background: linear-gradient(hsl(192deg, 100%, 67%), hsl(280deg, 87%, 65%));
+  -webkit-text-fill-color: transparent;
+  -webkit-background-clip: text;
+  color: hsl(234deg, 39%, 85%);
+}
+
 .header {
   background: linear-gradient(hsl(192deg, 100%, 67%), hsl(280deg, 87%, 65%));
   grid-column: 2/3;

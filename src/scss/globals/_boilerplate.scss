@@ -57,3 +57,9 @@ button {
 		transform: scale(0.98);
 	}
 }
+.copyrightText {
+	background: $CheckBackground;
+	-webkit-text-fill-color: transparent;
+	-webkit-background-clip: text;
+	color: $LightGrayishBlueHover;
+}

@@ -35,17 +35,16 @@ function resetForms() {
 	});
 }
 
-function resetScreen() {
+function resetTaskScreen() {
 	list.style.opacity = "1";
-
+	list.style.pointerEvents = "auto";
+	sideBar.style.pointerEvents = "auto";
 	resetForms();
 
 	taskModal.style.display = "none";
 	editTaskBtn.style.display = "none";
 	document.getElementById("createTaskBtn").style.display = "inline";
 
-	list.style.pointerEvents = "auto";
-	sideBar.style.pointerEvents = "auto";
 	const taskArray = Array.from(
 		document.querySelectorAll(".listContainer__listItem")
 	);
@@ -64,15 +63,23 @@ function closeTaskModal(e) {
 		!clickDetail;
 
 	if (outsideClick) {
-		resetScreen();
+		resetTaskScreen();
 		document.removeEventListener("click", closeTaskModal);
 	}
 }
 
 function newTaskModal() {
+	const taskArray = Array.from(
+		document.querySelectorAll(".listContainer__listItem")
+	);
+	taskArray.forEach((item) => (item.style.pointerEvents = "none"));
+
 	list.style.opacity = "0.7";
 	list.style.pointerEvents = "none";
 	sideBar.style.pointerEvents = "none";
+
+	// console.log(list);
+
 	taskModal.style.display = "flex";
 	taskTitle.focus();
 	document.addEventListener("click", closeTaskModal);
@@ -187,6 +194,7 @@ function closeProjectModal(e) {
 function revealProjectModal() {
 	list.style.opacity = "0.7";
 	list.style.pointerEvents = "none";
+	// console.log(list);
 	sideBar.style.pointerEvents = "none";
 	projectModal.style.display = "flex";
 	document.getElementById("projectTitle").focus();
@@ -199,12 +207,25 @@ function makeProjectActive(project) {
 	// console.log(Array.from(allProjects));
 	project.classList.add("active");
 }
+
 export default (function dom() {
 	function displayToDom(storageArray) {
 		storageArray.forEach((item) => {
 			// localStorage.setItem(item, storage.inbox.indexOf(item));
 			// domFactory(JSON.parse(localStorage.getItem()))
-			localStorage.setItem(storage.inbox.indexOf(item), JSON.stringify(item));
+			// localStorage.setItem(storage.inbox.indexOf(item), JSON.stringify(item));
+			// if (localStorage.length > 0) {
+			// 	const localIndex = JSON.parse(
+			// 		localStorage.key(storage.inbox.indexOf(item))
+			// 	);
+			// 	const localItem = JSON.parse(
+			// 		localStorage.getItem(storage.inbox.indexOf(item))
+			// 	);
+			// 	console.log({ localIndex, localItem });
+			// 	domFactory(localItem, localIndex);
+			// 	// console.log({ localItem });
+			// }
+
 			domFactory(item, storage.inbox.indexOf(item));
 		});
 	}
@@ -221,7 +242,7 @@ export default (function dom() {
 	return {
 		// for Task
 		newTaskModal,
-		resetScreen,
+		resetTaskScreen,
 		domFactory,
 		detailEditModal,
 		clearTaskScreen,

@@ -63,7 +63,7 @@ function editTask(editBtn, taskObject) {
 		}
 		checkTaskComplete();
 		editTaskBtn.removeEventListener("click", updateTaskDetails);
-		dom.resetScreen();
+		dom.resetTaskScreen();
 	}
 
 	editBtn.addEventListener("click", () => {
@@ -82,7 +82,7 @@ function editTask(editBtn, taskObject) {
 }
 
 function addToArray(e) {
-	// e.preventDefault();
+	e.preventDefault();
 	const title = taskTitle.value;
 	const desc = taskDesc.value;
 	const taskDueDate = taskDue.value;
@@ -105,12 +105,12 @@ function addToArray(e) {
 		);
 		storage.inbox.push(taskItem);
 		// console.log(storage.inbox);
-		dom.resetScreen();
+		dom.resetTaskScreen();
 
-		localStorage.setItem(
-			storage.inbox.indexOf(taskItem),
-			JSON.stringify(taskItem)
-		);
+		// localStorage.setItem(
+		// 	storage.inbox.indexOf(taskItem),
+		// 	JSON.stringify(taskItem)
+		// );
 
 		dom.domFactory(taskItem, storage.inbox.indexOf(taskItem));
 

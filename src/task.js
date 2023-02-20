@@ -1,6 +1,8 @@
 import checkTaskComplete from "./completeTask";
 import storage from "./storage";
 import dom from "./dom";
+import local from "./localStorage";
+import tabs, { projectArray } from "./tabs";
 
 class TaskCreator {
 	constructor(title, currentTab, desc, dueDate, priority) {
@@ -39,6 +41,7 @@ function deleteTasks(div) {
 		// console.log(domEleToRemove);
 		// console.log(storage.inbox);
 		// console.log(index);
+		local.updateLocalStorage(storage.inbox, projectArray);
 	}
 	div.addEventListener("click", deleteFromStorage);
 }
@@ -61,6 +64,9 @@ function editTask(editBtn, taskObject) {
 		else {
 			dom.displayToDom(storage.inbox.filter((item) => item.tab === currentTab));
 		}
+
+		local.updateLocalStorage(storage.inbox, projectArray);
+
 		checkTaskComplete();
 		editTaskBtn.removeEventListener("click", updateTaskDetails);
 		dom.resetTaskScreen();
@@ -104,6 +110,8 @@ function addToArray(e) {
 			taskPriority
 		);
 		storage.inbox.push(taskItem);
+
+		local.updateLocalStorage(storage.inbox, projectArray);
 		// console.log(storage.inbox);
 		dom.resetTaskScreen();
 
@@ -144,7 +152,7 @@ export default (function task() {
 	};
 
 	const create = () => addTaskBtn.addEventListener("click", createTask);
-
+	local.updateLocalStorage(storage.inbox, projectArray);
 	return {
 		// for tasks
 		create,

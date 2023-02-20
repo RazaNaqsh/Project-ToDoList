@@ -4,6 +4,7 @@ import storage from "./storage";
 import checkCompleteTask from "./completeTask";
 import deleteImage from "./icons/delete-forever.svg";
 import dom from "./dom";
+import local from "./localStorage";
 
 const projectArray = ["Family", "Personal", "Secret"];
 
@@ -42,7 +43,9 @@ function addDeleteEvent(delImg) {
 		const domEleToRemove = domArray.indexOf(e.target.parentElement);
 		projectTab.removeChild(e.target.parentElement);
 		projectArray.splice(domEleToRemove, 1);
-		console.log(projectArray);
+
+		local.updateLocalStorage(storage.inbox, projectArray);
+		// console.log(projectArray);
 
 		// console.log(domEleToRemove);
 	});
@@ -84,7 +87,8 @@ function addToArray(e) {
 		projectArray.push(projectItem);
 		dom.resetProjectScreen();
 		projectFactory(projectItem, storage.inbox.indexOf(projectItem));
-		console.log(storage.inbox);
+		// console.log(storage.inbox);
+		local.updateLocalStorage(storage.inbox, projectArray);
 		checkCompleteTask();
 	}
 }
@@ -104,3 +108,5 @@ export default function tabs() {
 	displayProjects();
 	newProjectBtn.addEventListener("click", createNewProject);
 }
+
+export { projectArray };

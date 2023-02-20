@@ -211,21 +211,6 @@ function makeProjectActive(project) {
 export default (function dom() {
 	function displayToDom(storageArray) {
 		storageArray.forEach((item) => {
-			// localStorage.setItem(item, storage.inbox.indexOf(item));
-			// domFactory(JSON.parse(localStorage.getItem()))
-			// localStorage.setItem(storage.inbox.indexOf(item), JSON.stringify(item));
-			// if (localStorage.length > 0) {
-			// 	const localIndex = JSON.parse(
-			// 		localStorage.key(storage.inbox.indexOf(item))
-			// 	);
-			// 	const localItem = JSON.parse(
-			// 		localStorage.getItem(storage.inbox.indexOf(item))
-			// 	);
-			// 	console.log({ localIndex, localItem });
-			// 	domFactory(localItem, localIndex);
-			// 	// console.log({ localItem });
-			// }
-
 			domFactory(item, storage.inbox.indexOf(item));
 		});
 	}

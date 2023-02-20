@@ -17,6 +17,14 @@
 		font-size: 0.75rem;
 	}
 
+	@media (max-width: 900px) {
+		display: none;
+	}
+	.responsiveSide {
+		position: fixed;
+		z-index: 2;
+		height: calc(66vh + 17vh);
+	}
 	@keyframes slide-in {
 		0% {
 			transform: translateX(-500px);

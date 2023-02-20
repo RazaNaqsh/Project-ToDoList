@@ -73,11 +73,21 @@ button:active {
 
 .header {
   background: linear-gradient(hsl(192deg, 100%, 67%), hsl(280deg, 87%, 65%));
+  position: relative;
   grid-column: 2/3;
   grid-row: 1/2;
   display: flex;
   animation: slide-down 450ms ease-in-out 1 normal;
   min-height: 17vh;
+}
+@media (max-width: 900px) {
+  .header {
+    min-height: 12vh;
+  }
+  .header::before {
+    position: absolute;
+    content: "";
+  }
 }
 .header__title {
   align-self: flex-end;
@@ -118,6 +128,16 @@ button:active {
     gap: 0.5rem;
     font-size: 0.75rem;
   }
+}
+@media (max-width: 900px) {
+  .sideBar {
+    display: none;
+  }
+}
+.sideBar .responsiveSide {
+  position: fixed;
+  z-index: 2;
+  height: 83vh;
 }
 @keyframes slide-in {
   0% {
@@ -210,6 +230,12 @@ button:active {
   max-height: 66vh;
   animation: slide-up 450ms ease-in-out 1 normal;
 }
+@media (max-width: 900px) {
+  .listContainer {
+    padding-top: 1rem;
+    max-height: 100%;
+  }
+}
 @keyframes slide-up {
   0% {
     transform: translateY(500px);
@@ -243,6 +269,12 @@ button:active {
   background-color: hsl(235deg, 21%, 11%);
   border-radius: 5px;
 }
+@media (max-width: 900px) {
+  .listContainer__lists {
+    padding: 0.5rem;
+    font-size: 0.7rem;
+  }
+}
 .listContainer__listItem {
   position: relative;
   background-color: hsl(235deg, 21%, 11%);
@@ -257,6 +289,12 @@ button:active {
   animation: slide-left 450ms ease-in-out 1 normal;
 }
 @media (max-width: 1160px) {
+  .listContainer__listItem {
+    padding: 0.3rem;
+    font-size: 0.7rem;
+  }
+}
+@media (max-width: 900px) {
   .listContainer__listItem {
     padding: 0.3rem;
     font-size: 0.7rem;
@@ -290,6 +328,11 @@ button:active {
 .listContainer__listItem .editIcon:hover, .listContainer__listItem .delIcon:hover, .listContainer__listItem .taskDetails:hover {
   opacity: 0.7;
 }
+@media (max-width: 900px) {
+  .listContainer__listItem .editIcon, .listContainer__listItem .delIcon, .listContainer__listItem .taskDetails {
+    font-size: 0.6rem;
+  }
+}
 .listContainer__listItem .editIcon {
   height: 25px;
   justify-self: end;
@@ -297,6 +340,11 @@ button:active {
 .listContainer__listItem .delIcon {
   height: 25px;
   justify-self: center;
+}
+@media (max-width: 900px) {
+  .listContainer__listItem .editIcon, .listContainer__listItem .delIcon {
+    height: 22.5px;
+  }
 }
 .listContainer__listItem .dateContainer {
   justify-self: center;
@@ -309,7 +357,7 @@ button:active {
 .listContainer__listItem .taskDetails {
   right: 15rem;
   top: 0.7rem;
-  font-size: 0.9rem;
+  font-size: inherit;
   border: 1px solid hsl(220deg, 98%, 61%);
   padding: 0.5rem;
 }
@@ -394,4 +442,13 @@ button:active {
   transform: translateY(9.5%);
   grid-template-columns: 1fr 2.8fr;
   grid-template-rows: 1.15fr 4fr;
+}
+@media (max-width: 900px) {
+  .container {
+    grid-template-columns: 1fr;
+    grid-template-rows: 0.5fr 6fr;
+    transform: translateY(7.5%);
+    height: 85vh;
+    width: 90vw;
+  }
 }/*# sourceMappingURL=style.css.map */

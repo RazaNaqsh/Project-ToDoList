@@ -2,11 +2,20 @@
 
 .header {
 	background: $CheckBackground;
+	position: relative;
 	grid-column: 2/3;
 	grid-row: 1/2;
 	display: flex;
 	animation: slide-down 450ms ease-in-out 1 normal;
 	min-height: 17vh;
+
+	@media (max-width: 900px) {
+		min-height: 12vh;
+		&::before {
+			position: absolute;
+			content: "";
+		}
+	}
 
 	&__title {
 		align-self: flex-end;

@@ -12,6 +12,11 @@
 	// overflow: auto;
 	// overflow-y: scroll;
 
+	@media (max-width: 900px) {
+		padding-top: 1rem;
+		max-height: 100%;
+	}
+
 	animation: slide-up 450ms ease-in-out 1 normal;
 	@keyframes slide-up {
 		0% {
@@ -47,6 +52,10 @@
 			background-color: $VeryDarkBlue;
 			border-radius: 5px;
 		}
+		@media (max-width: 900px) {
+			padding: 0.5rem;
+			font-size: 0.7rem;
+		}
 	}
 	&__listItem {
 		position: relative;
@@ -64,6 +73,10 @@
 		animation: slide-left 450ms ease-in-out 1 normal;
 
 		@media (max-width: 1160px) {
+			padding: 0.3rem;
+			font-size: 0.7rem;
+		}
+		@media (max-width: 900px) {
 			padding: 0.3rem;
 			font-size: 0.7rem;
 		}
@@ -97,7 +110,11 @@
 			&:hover {
 				opacity: 0.7;
 			}
+			@media (max-width: 900px) {
+				font-size: 0.6rem;
+			}
 		}
+
 		& .editIcon {
 			height: 25px;
 			justify-self: end;
@@ -106,6 +123,14 @@
 			height: 25px;
 			justify-self: center;
 		}
+
+		& .editIcon,
+		& .delIcon {
+			@media (max-width: 900px) {
+				height: 22.5px;
+			}
+		}
+
 		& .dateContainer {
 			justify-self: center;
 			padding: 0.5rem;
@@ -117,7 +142,7 @@
 		& .taskDetails {
 			right: 15rem;
 			top: 0.7rem;
-			font-size: 0.9rem;
+			font-size: inherit;
 			border: 1px solid $BrightBlue;
 			padding: 0.5rem;
 		}

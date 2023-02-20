@@ -7,4 +7,4 @@ import tabs from "./tabs";
 
 tabs();
 defaultTab();
-taskComplete();
+// taskComplete();

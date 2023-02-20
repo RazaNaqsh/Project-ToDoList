@@ -44,7 +44,7 @@ function addDeleteEvent(delImg) {
 		projectTab.removeChild(e.target.parentElement);
 		projectArray.splice(domEleToRemove, 1);
 
-		local.updateLocalStorage(storage.inbox, projectArray);
+		local.updateLocalTabs(projectArray);
 		// console.log(projectArray);
 
 		// console.log(domEleToRemove);
@@ -88,7 +88,7 @@ function addToArray(e) {
 		dom.resetProjectScreen();
 		projectFactory(projectItem, storage.inbox.indexOf(projectItem));
 		// console.log(storage.inbox);
-		local.updateLocalStorage(storage.inbox, projectArray);
+		local.updateLocalTabs(projectArray);
 		checkCompleteTask();
 	}
 }

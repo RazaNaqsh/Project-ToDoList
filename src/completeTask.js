@@ -1,3 +1,4 @@
+import local from "./localStorage";
 import storage from "./storage";
 
 function taskStatusHandler(e) {
@@ -16,7 +17,7 @@ function taskStatusHandler(e) {
 		parentDiv.style.textDecoration = "none";
 		parentDiv.style.opacity = 1;
 	}
-
+	local.updateLocalTodo(storage.inbox);
 	// console.log(storage.inbox);
 
 	// const isCompleted = siblingPara.style.textDecoration === "line-through";

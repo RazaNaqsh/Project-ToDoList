@@ -41,7 +41,7 @@ function deleteTasks(div) {
 		// console.log(domEleToRemove);
 		// console.log(storage.inbox);
 		// console.log(index);
-		local.updateLocalStorage(storage.inbox, projectArray);
+		local.updateLocalTodo(storage.inbox);
 	}
 	div.addEventListener("click", deleteFromStorage);
 }
@@ -65,7 +65,7 @@ function editTask(editBtn, taskObject) {
 			dom.displayToDom(storage.inbox.filter((item) => item.tab === currentTab));
 		}
 
-		local.updateLocalStorage(storage.inbox, projectArray);
+		local.updateLocalTodo(storage.inbox);
 
 		checkTaskComplete();
 		editTaskBtn.removeEventListener("click", updateTaskDetails);
@@ -111,7 +111,7 @@ function addToArray(e) {
 		);
 		storage.inbox.push(taskItem);
 
-		local.updateLocalStorage(storage.inbox, projectArray);
+		local.updateLocalTodo(storage.inbox);
 		// console.log(storage.inbox);
 		dom.resetTaskScreen();
 
@@ -152,7 +152,8 @@ export default (function task() {
 	};
 
 	const create = () => addTaskBtn.addEventListener("click", createTask);
-	local.updateLocalStorage(storage.inbox, projectArray);
+	local.updateLocalTodo(storage.inbox);
+	local.updateLocalTabs(projectArray);
 	return {
 		// for tasks
 		create,

@@ -6,7 +6,7 @@ import deleteImage from "./icons/delete-forever.svg";
 import dom from "./dom";
 import local from "./localStorage";
 
-const projectArray = ["Family", "Personal", "Secret"];
+let projectArray = ["Family", "Personal", "Secret"];
 
 const projectTab = document.getElementById("projects");
 
@@ -105,6 +105,11 @@ export default function tabs() {
 	const inboxTab = document.getElementById("defaultTab");
 
 	inboxTab.addEventListener("click", defaultTab);
+	if (localStorage.getItem("tabs")) {
+		// console.log("tabs are here");
+		const localTabArray = JSON.parse(localStorage.getItem("tabs"));
+		projectArray = localTabArray;
+	}
 	displayProjects();
 	newProjectBtn.addEventListener("click", createNewProject);
 }

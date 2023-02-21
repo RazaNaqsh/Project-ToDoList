@@ -1,5 +1,5 @@
 import "./scss/style.scss";
-import taskComplete from "./completeTask";
+// import taskComplete from "./completeTask";
 import defaultTab from "./defaultTab";
 import tabs from "./tabs";
 

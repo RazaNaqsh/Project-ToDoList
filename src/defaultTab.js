@@ -17,6 +17,14 @@ export default function defaultTab() {
 	dom.clearTaskScreen();
 	task.current("Inbox");
 	task.create();
+
+	if (localStorage) {
+		console.log("local HERE");
+		// console.log(JSON.parse(localStorage.getItem("todo")));
+		const localTodoArray = JSON.parse(localStorage.getItem("todo"));
+		storage.inbox = localTodoArray;
+	}
+
 	dom.displayToDom(storage.inbox);
 	taskComplete();
 }

@@ -213,6 +213,10 @@ export default (function dom() {
 		storageArray.forEach((item) => {
 			domFactory(item, storage.inbox.indexOf(item));
 		});
+		console.log(storage.inbox);
+		// storageArray.forEach((item) => {
+		// 	domFactory(item, storage.inbox.indexOf(item));
+		// });
 	}
 
 	const clearTaskScreen = () => {

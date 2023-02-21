@@ -112,7 +112,7 @@ function addToArray(e) {
 		storage.inbox.push(taskItem);
 
 		local.updateLocalTodo(storage.inbox);
-		// console.log(storage.inbox);
+		console.log(storage.inbox);
 		dom.resetTaskScreen();
 
 		// localStorage.setItem(
@@ -152,8 +152,8 @@ export default (function task() {
 	};
 
 	const create = () => addTaskBtn.addEventListener("click", createTask);
-	local.updateLocalTodo(storage.inbox);
-	local.updateLocalTabs(projectArray);
+	// local.updateLocalTodo(storage.inbox);
+	// local.updateLocalTabs(projectArray);
 	return {
 		// for tasks
 		create,

@@ -18,7 +18,7 @@ export default function defaultTab() {
 	task.current("Inbox");
 	task.create();
 
-	if (localStorage) {
+	if (localStorage.getItem("todo")) {
 		console.log("local HERE");
 		// console.log(JSON.parse(localStorage.getItem("todo")));
 		const localTodoArray = JSON.parse(localStorage.getItem("todo"));

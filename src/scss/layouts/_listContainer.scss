@@ -192,6 +192,10 @@
 		@media (max-width: 1450px) {
 			left: 9rem;
 		}
+		@media (max-width: 900px) {
+			left: 2.5rem;
+			width: 70vw;
+		}
 	}
 	&__createProjectModal {
 		position: absolute;

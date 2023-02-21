@@ -405,6 +405,12 @@ button:active {
     left: 9rem;
   }
 }
+@media (max-width: 900px) {
+  .listContainer__createTaskModal {
+    left: 2.5rem;
+    width: 70vw;
+  }
+}
 .listContainer__createProjectModal {
   position: absolute;
   margin-inline: auto;

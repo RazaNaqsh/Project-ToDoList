@@ -42,6 +42,7 @@ function deleteTasks(div) {
 		// console.log(storage.inbox);
 		// console.log(index);
 		local.updateLocalTodo(storage.inbox);
+		checkTaskComplete();
 	}
 	div.addEventListener("click", deleteFromStorage);
 }

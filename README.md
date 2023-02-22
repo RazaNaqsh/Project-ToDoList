@@ -10,7 +10,7 @@
 * You can write **description** for the task, choose its **date** and **priority**.
 * You can **watch** information of the task.
 * You can **mark** tasks as completed.
-* Your Todos and Project will be saved in LocalStorage.
+* Your Todos and Project will be **saved** in **LocalStorage**.
 
 #### **Tools used:**
 

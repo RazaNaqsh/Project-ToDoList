@@ -2,7 +2,7 @@ import checkTaskComplete from "./completeTask";
 import storage from "./storage";
 import dom from "./dom";
 import local from "./localStorage";
-import tabs, { projectArray } from "./tabs";
+// import tabs, { projectArray } from "./tabs";
 
 class TaskCreator {
 	constructor(title, currentTab, desc, dueDate, priority) {
@@ -19,8 +19,8 @@ let currentTab;
 
 // const taskModal = document.getElementById("createTaskModal");
 const addTaskBtn = document.getElementById("addTask");
-const list = document.querySelector("#lists");
-const sideBar = document.querySelector(".sideBar");
+// const list = document.querySelector("#lists");
+// const sideBar = document.querySelector(".sideBar");
 const editTaskBtn = document.getElementById("editTaskBtn");
 
 const taskTitle = document.getElementById("taskTitle");
@@ -50,27 +50,30 @@ function deleteTasks(div) {
 function editTask(editBtn, taskObject) {
 	const taskObj = taskObject;
 	function updateTaskDetails(e) {
-		e.preventDefault();
+		// e.preventDefault();
+		if (document.getElementById("taskTitle").value !== "") {
+			taskObj.title = document.getElementById("taskTitle").value;
+			taskObj.description = document.getElementById("taskDescription").value;
+			taskObj.dueDate = document.getElementById("taskDueDate").value;
+			priorityRadios.forEach((radio) => {
+				if (radio.checked) taskObj.priority = radio.value;
+			});
+			// console.log(storage.inbox);
 
-		taskObj.title = document.getElementById("taskTitle").value;
-		taskObj.description = document.getElementById("taskDescription").value;
-		taskObj.dueDate = document.getElementById("taskDueDate").value;
-		priorityRadios.forEach((radio) => {
-			if (radio.checked) taskObj.priority = radio.value;
-		});
-		// console.log(storage.inbox);
+			dom.clearTaskScreen();
+			if (currentTab === "Inbox") dom.displayToDom(storage.inbox);
+			else {
+				dom.displayToDom(
+					storage.inbox.filter((item) => item.tab === currentTab)
+				);
+			}
 
-		dom.clearTaskScreen();
-		if (currentTab === "Inbox") dom.displayToDom(storage.inbox);
-		else {
-			dom.displayToDom(storage.inbox.filter((item) => item.tab === currentTab));
+			local.updateLocalTodo(storage.inbox);
+
+			checkTaskComplete();
+			editTaskBtn.removeEventListener("click", updateTaskDetails);
+			dom.resetTaskScreen();
 		}
-
-		local.updateLocalTodo(storage.inbox);
-
-		checkTaskComplete();
-		editTaskBtn.removeEventListener("click", updateTaskDetails);
-		dom.resetTaskScreen();
 	}
 
 	editBtn.addEventListener("click", () => {
@@ -89,7 +92,7 @@ function editTask(editBtn, taskObject) {
 }
 
 function addToArray(e) {
-	e.preventDefault();
+	// e.preventDefault();
 	const title = taskTitle.value;
 	const desc = taskDesc.value;
 	const taskDueDate = taskDue.value;

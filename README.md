@@ -20,8 +20,17 @@
 * Date Fn Library
 
 #### **Learnings:**
-* Used **revealing module** and **factory patterns** for code organizing.
+* Used **Module Pattern** and **ES6 Modules** for code organizing.
 * Used **HTML5 semantic elements** for better structure and readability.
 * Used **CSS Grid** and **CSS Flexbox** modules to create layout.
+* Setting up **Webpack** for different **assets**.
+* Setting up **Scss** with **Webpack**.
 * Made functionality of **saving data** to `localStorage`.
 * Overall, I have **improved my learning abilities** A LOT!
+
+#### **Features to Add:**
+* Show **completed tasks** in `Completed Tab` & Important tasks in `Important tab`
+* Show number of **task count** next to tabs
+* Show **Current day's** Task.
+* Show task is from which project
+* Edit Project name

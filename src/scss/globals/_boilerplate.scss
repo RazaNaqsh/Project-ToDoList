@@ -27,6 +27,10 @@ textarea {
 	width: 100%;
 	border: none;
 	transition: all 450ms ease-in-out;
+	&:hover {
+		background-color: white;
+		color: $VeryDarkBlue;
+	}
 	&:focus {
 		outline: 2px solid $BrightBlue;
 	}
@@ -34,9 +38,24 @@ textarea {
 textarea {
 	resize: none;
 }
+input[type="date"] {
+	background-color: $LightGrayishBlue;
+	color: $VeryDarkBlue;
+	padding: 0.2rem;
+	border: none;
+	outline: 1px solid $BrightBlue;
+	transition: all 450ms ease-in-out;
+	&:hover {
+		background-color: $LightGrayishBlueHover;
+	}
+}
 input[type="radio"] {
 	margin-right: 1rem;
 	accent-color: $VeryDarkBlue;
+	transition: all 450ms ease-in-out;
+	&:hover {
+		transform: scale(1.2);
+	}
 }
 button {
 	margin-top: 1.5rem;
@@ -51,7 +70,9 @@ button {
 	cursor: pointer;
 	transition: all 100ms ease-in-out;
 	&:hover {
-		transform: scale(0.95);
+		// transform: scale(0.95);
+		background-color: white;
+		color: $VeryDarkBlue;
 	}
 	&:active {
 		transform: scale(0.98);

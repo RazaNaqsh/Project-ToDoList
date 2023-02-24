@@ -29,6 +29,11 @@ textarea {
   border: none;
   transition: all 450ms ease-in-out;
 }
+input[type=text]:hover,
+textarea:hover {
+  background-color: white;
+  color: hsl(235deg, 21%, 11%);
+}
 input[type=text]:focus,
 textarea:focus {
   outline: 2px solid hsl(220deg, 98%, 61%);
@@ -38,9 +43,25 @@ textarea {
   resize: none;
 }
 
+input[type=date] {
+  background-color: hsl(236deg, 33%, 92%);
+  color: hsl(235deg, 21%, 11%);
+  padding: 0.2rem;
+  border: none;
+  outline: 1px solid hsl(220deg, 98%, 61%);
+  transition: all 450ms ease-in-out;
+}
+input[type=date]:hover {
+  background-color: hsl(234deg, 39%, 85%);
+}
+
 input[type=radio] {
   margin-right: 1rem;
   accent-color: hsl(235deg, 21%, 11%);
+  transition: all 450ms ease-in-out;
+}
+input[type=radio]:hover {
+  transform: scale(1.2);
 }
 
 button {
@@ -58,7 +79,8 @@ button {
   transition: all 100ms ease-in-out;
 }
 button:hover {
-  transform: scale(0.95);
+  background-color: white;
+  color: hsl(235deg, 21%, 11%);
 }
 button:active {
   transform: scale(0.98);

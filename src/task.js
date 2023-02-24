@@ -1,7 +1,9 @@
+import { format } from "date-fns";
 import checkTaskComplete from "./completeTask";
 import storage from "./storage";
 import dom from "./dom";
 import local from "./localStorage";
+import { getDate, toDate } from "date-fns";
 // import tabs, { projectArray } from "./tabs";
 
 class TaskCreator {
@@ -151,6 +153,9 @@ export default (function task() {
 	const current = (tab) => {
 		currentTab = tab;
 		document.getElementById("headerTitle").textContent = currentTab;
+
+		const today = format(new Date(), "MMM dd, yyyy");
+		document.getElementById("headerDate").textContent = `Today is ${today}`;
 		// console.log(currentTab);
 		return currentTab;
 	};

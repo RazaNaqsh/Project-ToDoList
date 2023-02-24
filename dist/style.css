@@ -111,6 +111,12 @@ button:active {
     content: "";
   }
 }
+.header__date {
+  position: absolute;
+  right: 1.5rem;
+  bottom: 1rem;
+  color: white;
+}
 .header__title {
   align-self: flex-end;
   margin-left: 2rem;

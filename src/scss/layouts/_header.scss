@@ -16,7 +16,12 @@
 			content: "";
 		}
 	}
-
+	&__date {
+		position: absolute;
+		right: 1.5rem;
+		bottom: 1rem;
+		color: white;
+	}
 	&__title {
 		align-self: flex-end;
 		margin-left: 2rem;

@@ -3,7 +3,7 @@
 A dynamically created _ToDo_ list with **vanilla JavaScript**.
 
 **Live preview** of the project is
-[here](https://razanaqsh.github.io/project_toDoList/)
+[here](https://razanaqsh.github.io/Project-ToDoList/)
 
 ### Overview
 

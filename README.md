@@ -7,6 +7,9 @@ A dynamically created _ToDo_ list with **vanilla JavaScript**.
 
 ### Overview
 
+![todoList](https://user-images.githubusercontent.com/108403182/229099805-abd357bd-395b-480f-9555-9319d2494481.png)
+
+
 #### **Features:**
 
 - You can **add**, **delete** and **edit** projects and tasks.
